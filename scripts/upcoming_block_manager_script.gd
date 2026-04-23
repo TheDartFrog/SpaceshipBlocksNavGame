@@ -12,7 +12,6 @@ func _ready() -> void:
 	
 	nextThreeBlocks = [selectOneBlock(), selectOneBlock(), selectOneBlock()]
 	
-	spawnNextBlock()
 	
 
 
