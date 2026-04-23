@@ -1,4 +1,4 @@
 extends Node
 
-func _ready():
-	pass
+@warning_ignore("unused_signal")
+signal end_reached
