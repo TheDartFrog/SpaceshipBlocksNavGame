@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvcld45f8l8nw"]
+
+[ext_resource type="Script" uid="uid://b3t2s5ld1tsa3" path="res://scripts/upcoming_block_manager_script.gd" id="1_goymc"]
+
+[node name="UpcomingBlockManagerScene" type="Node2D"]
+script = ExtResource("1_goymc")
