@@ -32,7 +32,19 @@ func selectOneBlock() -> int:
 func blockPatternInterpreter(blockPatternToInterpret, objectToUpdate):
 	print("Interpretting block: " + Global.blockTypeToString(blockPatternToInterpret))
 	print(Global.blockDictionary[blockPatternToInterpret])
+	print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
 	
+	# for [x, y]
+	
+	for i in Global.blockDictionary[blockPatternToInterpret]:
+		print("\n\n")
+		print(Global.blockDictionary[blockPatternToInterpret[i]])
+		print("\n\n")
+		for j in Global.blockDictionary[blockPatternToInterpret[i]]:
+			print(Global.blockDictionary[blockPatternToInterpret[i[j]]])
+	
+	
+	print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
 	
 	
 
@@ -42,13 +54,9 @@ func spawnNextBlock():
 	
 	## TODO: czy tak to spawnować żeby działało na gridzie? xdd
 	var blockToAddInstance = blockTemplateScene.instantiate()
-	add_child(blockToAddInstance)
+	#add_child(blockToAddInstance)
 	# loop thru the 4x4 grid, setting the tiles to 0, 1 or 2
 	blockPatternInterpreter(nextThreeBlocks[0], blockToAddInstance)
-	
-	
-	
-	
 	
 	
 	
