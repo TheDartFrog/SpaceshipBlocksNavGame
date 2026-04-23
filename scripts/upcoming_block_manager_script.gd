@@ -12,6 +12,8 @@ func _ready() -> void:
 	
 	nextThreeBlocks = [selectOneBlock(), selectOneBlock(), selectOneBlock()]
 	
+	spawnNextBlock()
+	
 
 
 
@@ -49,7 +51,7 @@ func blockPatternInterpreter(blockPatternToInterpret, objectToUpdate):
 	
 	
 
-
+## instantiate and add to scene the next block from the queue
 func spawnNextBlock() -> TileMapLayer:
 	print("Spawning next block...")
 	
@@ -59,7 +61,10 @@ func spawnNextBlock() -> TileMapLayer:
 	var blockToAddInstance = blockTemplateScene.instantiate()
 	add_child(blockToAddInstance)
 	print(blockToAddInstance)
-	blockPatternInterpreter(nextThreeBlocks[0], blockToAddInstance)
+	print(nextThreeBlocks)
+	blockPatternInterpreter(nextThreeBlocks.pop_front(), blockToAddInstance)
+	nextThreeBlocks.append(selectOneBlock())
+	print(nextThreeBlocks)
 	#add_child(blockToAddInstance)
 	return blockToAddInstance
 
