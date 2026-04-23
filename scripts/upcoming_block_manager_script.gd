@@ -12,7 +12,6 @@ func _ready() -> void:
 	
 	nextThreeBlocks = [selectOneBlock(), selectOneBlock(), selectOneBlock()]
 	
-	
 
 
 
@@ -51,7 +50,7 @@ func blockPatternInterpreter(blockPatternToInterpret, objectToUpdate):
 	
 
 
-func spawnNextBlock():
+func spawnNextBlock() -> TileMapLayer:
 	print("Spawning next block...")
 	
 	## TODO: czy tak to spawnować żeby działało na gridzie? xdd
@@ -62,6 +61,7 @@ func spawnNextBlock():
 	print(blockToAddInstance)
 	blockPatternInterpreter(nextThreeBlocks[0], blockToAddInstance)
 	#add_child(blockToAddInstance)
+	return blockToAddInstance
 
 	
 	
