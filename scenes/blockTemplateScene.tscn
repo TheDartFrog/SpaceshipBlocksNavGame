@@ -1,20 +1,20 @@
-[gd_scene load_steps=6 format=4 uid="uid://btluo5aguj20c"]
+[gd_scene load_steps=6 format=4 uid="uid://c5xlcohvnilps"]
 
 [ext_resource type="Texture2D" uid="uid://c40y4kgqlal5b" path="res://assets/temp_tile1.png" id="1_06el4"]
 [ext_resource type="Texture2D" uid="uid://dyfsq83aq5l75" path="res://assets/temp_tile2.png" id="2_3aqgh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3aqgh"]
 texture = ExtResource("1_06el4")
-texture_region_size = Vector2i(128, 128)
+texture_region_size = Vector2i(30, 30)
 0:0/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dva5t"]
 texture = ExtResource("2_3aqgh")
-texture_region_size = Vector2i(128, 128)
+texture_region_size = Vector2i(30, 30)
 0:0/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_juacu"]
-tile_size = Vector2i(128, 128)
+tile_size = Vector2i(30, 30)
 sources/0 = SubResource("TileSetAtlasSource_3aqgh")
 sources/1 = SubResource("TileSetAtlasSource_dva5t")
 

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=4 uid="uid://usak2ypahu2x"]
+
+[ext_resource type="PackedScene" uid="uid://c5xlcohvnilps" path="res://scenes/blockTemplateScene.tscn" id="1_j7dk2"]
+[ext_resource type="Script" uid="uid://cugwj4kx5k54d" path="res://reference_script.gd" id="1_s1352"]
+
+[node name="BlockNewRoot" type="Node2D"]
+script = ExtResource("1_s1352")
+
+[node name="BlockTemplateScene" parent="." instance=ExtResource("1_j7dk2")]
+position = Vector2(-60, -60)
+tile_map_data = PackedByteArray("AAADAAEAAAAAAAAAAAADAAIAAAAAAAAAAAADAAMAAAAAAAAAAAACAAMAAAAAAAAAAAABAAMAAAAAAAAAAAAAAAMAAAAAAAAAAAADAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAABAAIAAAAAAAAAAAABAAEAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAACAAAAAAAAAAAAAAACAAEAAAAAAAAAAAACAAIAAAAAAAAAAAA=")

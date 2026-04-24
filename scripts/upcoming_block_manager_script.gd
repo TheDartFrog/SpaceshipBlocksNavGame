@@ -2,14 +2,16 @@ extends Node
 
 var rng = RandomNumberGenerator.new()
 
-@onready var blockTemplateScene = preload("uid://btluo5aguj20c")
+@onready var blockTemplateScene = preload("res://scenes/block_new_root.tscn")
 
 var nextThreeBlocks = [0, 0, 0]
 
+var current_block
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _ready() -> void:
 	
+	SignalBus.block_set.connect(spawnNextBlock)
 	nextThreeBlocks = [selectOneBlock(), selectOneBlock(), selectOneBlock()]
 	
 
@@ -50,7 +52,7 @@ func blockPatternInterpreter(blockPatternToInterpret, objectToUpdate):
 	
 
 
-func spawnNextBlock() -> TileMapLayer:
+func spawnNextBlock() -> Node2D:
 	print("Spawning next block...")
 	
 	## TODO: czy tak to spawnować żeby działało na gridzie? xdd
@@ -59,8 +61,10 @@ func spawnNextBlock() -> TileMapLayer:
 	var blockToAddInstance = blockTemplateScene.instantiate()
 	add_child(blockToAddInstance)
 	print(blockToAddInstance)
-	blockPatternInterpreter(nextThreeBlocks[0], blockToAddInstance)
+	blockPatternInterpreter(nextThreeBlocks[0], blockToAddInstance.tilemap)
 	#add_child(blockToAddInstance)
+	current_block = blockToAddInstance
+	current_block.position = Vector2(15,-255)
 	return blockToAddInstance
 
 	

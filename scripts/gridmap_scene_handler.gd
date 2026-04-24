@@ -10,7 +10,7 @@ class_name GridmapScene
 ## preloads
 
 var cell_sprite = preload("res://icon.svg") ## change later into an actual sprite
-
+var astar_pathfinding: AStarGrid2D = AStarGrid2D.new()
 
 ## consts
 
@@ -39,6 +39,27 @@ func _ready():
 	for cell in cells_to_create_asteroids:
 		tilemap.set_cell(cell, 0, Vector2(0,0))
 		
+	astar_pathfinding.region = tilemap.get_used_rect()
+	astar_pathfinding.cell_size = Vector2(30.0,30.0)
+	astar_pathfinding.default_compute_heuristic = AStarGrid2D.HEURISTIC_MANHATTAN
+	
+	astar_pathfinding.update()
+	
+	#astar_pathfinding.get_id_path(0, 1)
+	
+	#for cell in tilemap.get_used_cells():
+		#var id: int = 0
+		##astar_pathfinding.add_point(id, cell)
+		#id += 1
+		
+	#print(astar_pathfinding.get_point_path(Vector2i(0, 0), Vector2i(0, 6)))
+			##astar_pathfinding.add_point()
+			#var tile_position = Vector2i (
+				#cell_x + tilemap.get_used_rect().position.x,
+				#cell_y + tilemap.get_used_rect().position.y
+			#)
+			#var tile_data = tilemap.get_cell_tile_data(tile_position)
+			
 	
 		#for row in range(rows_count):
 			#if tilemap.get_cell_source_id(cell) == row:

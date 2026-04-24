@@ -1,5 +1,8 @@
 extends Node2D
 
+@onready var main_view: SubViewport = $CanvasLayer/MainViewContainer/SubViewport
+@onready var blocks_spawner = $CanvasLayer/MainViewContainer/SubViewport/UpcomingBlockManagerScene
+
 var current_gridmap: GridmapScene
 
 @export var map_size: Vector2i
@@ -35,13 +38,14 @@ func _ready():
 	for i in range(3):
 		var gridmap = gridmap_scene.instantiate()
 		gridmap.map_size = map_size
-		add_child(gridmap)
+		main_view.add_child(gridmap)
 		gridmap.position = gridmap_positions[i]
+		gridmap.visible = false
 		gridmap.tilemap.position = gridmap_final_local_pos
 		all_gridmaps.append(gridmap)
 		
 	current_gridmap = all_gridmaps[1]
-	
+	current_gridmap.visible = true
 	SignalBus.end_reached.connect(_load_next_stage)
 	#all_gridmaps.append(current_gridmap)
 	
@@ -54,13 +58,15 @@ func _ready():
 	await testing_timer.timeout
 	print("lesss go")
 	
-	_load_next_stage()
+	blocks_spawner.spawnNextBlock()
+	
+	#_load_next_stage()
 
 
 func _load_next_stage():
 	var gridmap_instance = gridmap_scene.instantiate()
 	gridmap_instance.map_size = map_size
-	add_child(gridmap_instance)
+	main_view.add_child(gridmap_instance)
 	gridmap_instance.tilemap.position = gridmap_final_local_pos
 	gridmap_instance.position = INCOMING_PLUS_POSITION
 	
