@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://be7nsty3ph4il"]
+
+[ext_resource type="Script" uid="uid://dio1s4x7vrfxc" path="res://scripts/upcoming_blocks_display_manager.gd" id="1_7wfqi"]
+[ext_resource type="PackedScene" uid="uid://c5xlcohvnilps" path="res://scenes/blockTemplateScene.tscn" id="1_wdgro"]
+[ext_resource type="Texture2D" uid="uid://c3hip20v4m1gt" path="res://assets/Kolejka.png" id="4_rjhdq"]
+
+[node name="UpcomingBlocks" type="Node2D"]
+script = ExtResource("1_7wfqi")
+
+[node name="firstComingBlock" parent="." instance=ExtResource("1_wdgro")]
+position = Vector2(14, 24)
+scale = Vector2(0.75, 0.75)
+
+[node name="secondComingBlock" parent="." instance=ExtResource("1_wdgro")]
+position = Vector2(15, 165)
+scale = Vector2(0.75, 0.75)
+
+[node name="thirdComingBlock" parent="." instance=ExtResource("1_wdgro")]
+position = Vector2(15, 315)
+scale = Vector2(0.75, 0.75)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(362.5, 258.5)
+scale = Vector2(0.6081641, 0.6081642)
+texture = ExtResource("4_rjhdq")
