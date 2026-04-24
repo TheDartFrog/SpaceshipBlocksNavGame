@@ -17,4 +17,4 @@ func _process(delta: float) -> void:
 func reload_game():
 	get_tree().reload_current_scene()
 	dead = false
-	#material.set_shader_parameter("curvature", lerp(material.get_shader_parameter("curvature"), 6.0, (delta * 100)))
+	material.set_shader_parameter("curvature", 6.0)
