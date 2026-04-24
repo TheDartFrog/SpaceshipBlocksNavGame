@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bl403ooyxjrf"
+path="res://.godot/imported/wymiana (mp3cut.net).wav-8dae38dc70fce3e6237a32ef820bf14e.sample"
+
+[deps]
+
+source_file="res://assets/sound/wymiana (mp3cut.net).wav"
+dest_files=["res://.godot/imported/wymiana (mp3cut.net).wav-8dae38dc70fce3e6237a32ef820bf14e.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
