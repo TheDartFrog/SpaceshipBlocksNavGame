@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://d2xrfpdgrgn7l"]
+[gd_scene load_steps=17 format=3 uid="uid://d2xrfpdgrgn7l"]
 
 [ext_resource type="Script" uid="uid://d1qgjfx0rhhvj" path="res://scripts/main_game_handler.gd" id="1_qsd30"]
 [ext_resource type="Texture2D" uid="uid://dsb2ae4jssxl0" path="res://assets/parallax/background.png" id="2_4a4v8"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://b32j1w4l7jgby" path="res://assets/parallax/gradient.png" id="7_cofsh"]
 [ext_resource type="Texture2D" uid="uid://vr45xhgeyenv" path="res://assets/parallax/glow.png" id="7_ef5fi"]
 [ext_resource type="PackedScene" uid="uid://bvcld45f8l8nw" path="res://scenes/upcoming_block_manager_scene.tscn" id="10_i4o3e"]
+[ext_resource type="PackedScene" uid="uid://bpnk0imqpvfpe" path="res://scenes/rocket_scene.tscn" id="12_u2xxy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_oa6bs"]
 shader = ExtResource("3_d383n")
@@ -109,3 +110,6 @@ render_target_update_mode = 4
 [node name="UpcomingBlockManagerScene" parent="CanvasLayer/MainViewContainer/SubViewport" instance=ExtResource("10_i4o3e")]
 
 [node name="Camera2D" type="Camera2D" parent="CanvasLayer/MainViewContainer/SubViewport"]
+
+[node name="RocketScene" parent="CanvasLayer/MainViewContainer/SubViewport" instance=ExtResource("12_u2xxy")]
+z_index = 5
