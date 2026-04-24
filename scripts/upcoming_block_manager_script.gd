@@ -14,6 +14,8 @@ func _ready() -> void:
 	SignalBus.block_set.connect(spawnNextBlock)
 	nextThreeBlocks = [selectOneBlock(), selectOneBlock(), selectOneBlock()]
 	
+	spawnNextBlock()
+	
 
 
 
@@ -24,27 +26,27 @@ func selectOneBlock() -> int:
 	
 	selectedBlock = rng.randi_range(1, Global.blockTypesEnums.values().size()-1)
 	
-	print("Selected block: " + Global.blockTypeToString(selectedBlock))
+	#print("Selected block: " + Global.blockTypeToString(selectedBlock))
 	
 	return selectedBlock
 
 ## pass a 4x4 TileMapLayer to this function
 func blockPatternInterpreter(blockPatternToInterpret, objectToUpdate):
-	print("Interpretting block: " + Global.blockTypeToString(blockPatternToInterpret))
-	print(Global.blockDictionary[blockPatternToInterpret])
-	print("\n\n\n")
+	#print("Interpretting block: " + Global.blockTypeToString(blockPatternToInterpret))
+	#print(Global.blockDictionary[blockPatternToInterpret])
+	#print("\n\n\n")
 	
 	# for [x, y]
 	
 	for i in 4:
 		#print(i)
 		for j in 4:
-			print(Global.blockDictionary[blockPatternToInterpret][i][j])
+			#print(Global.blockDictionary[blockPatternToInterpret][i][j])
 			var tilePos = Vector2i(i, j)
 			if Global.blockDictionary[blockPatternToInterpret][i][j] > 0:
-				print(tilePos)
-				print(Global.blockDictionary[blockPatternToInterpret][i][j]-1)
-				print("\n")
+				#print(tilePos)
+				#print(Global.blockDictionary[blockPatternToInterpret][i][j]-1)
+				#print("\n")
 				objectToUpdate.set_cell(tilePos, Global.blockDictionary[blockPatternToInterpret][i][j]-1, Vector2i(0, 0) )
 			elif Global.blockDictionary[blockPatternToInterpret][i][j] == 0:
 				objectToUpdate.set_cell(tilePos, -1, Vector2i(0, 0) )
