@@ -3,6 +3,8 @@ extends Node
 func _ready():
 	pass
 
+var player_input_manager
+
 ## !!!!!!!!!!!!!!!!!!
 ## When adding new block shapes - add #1 here, #2 in blockTypeToString, #3 in blockDictionary
 ## !!!!!!!!!!!!!!!!!!

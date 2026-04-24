@@ -60,16 +60,24 @@ func _ready():
 	
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	
 	if blocks_spawner.current_block != null && blocks_spawner.current_block.is_falling == true:
+		var current_block = blocks_spawner.current_block
 		var current_block_tilemap_pos = current_gridmap.tilemap.local_to_map(current_gridmap.tilemap.to_local(blocks_spawner.current_block.global_position))
 		if current_gridmap.tilemap.get_cell_tile_data(current_block_tilemap_pos) != null:
 			if current_gridmap.tilemap.get_cell_tile_data(current_block_tilemap_pos + Vector2i(0, 1)).get_custom_data("is_stopable") == true:
 				var snap = current_gridmap.tilemap.map_to_local(current_block_tilemap_pos)
-				blocks_spawner.current_block.global_position = current_gridmap.tilemap.to_global(snap)
-				blocks_spawner.current_block.is_falling = false
-				SignalBus.block_set.emit()
+				current_block.global_position = current_gridmap.tilemap.to_global(snap) - Vector2(15,15)
+				var blocks = current_block.tilemap.get_used_cells()
+				var cells_to_set: Array = []
+				for block in blocks:
+					cells_to_set.append(current_gridmap.tilemap.local_to_map(current_gridmap.tilemap.to_local(current_block.tilemap.to_global(current_block.tilemap.map_to_local(block)))))
+				for cell in cells_to_set:
+					current_gridmap.tilemap.set_cell(cell, 3, Vector2(2,0))
+					
+				current_block.is_falling = false
+				SignalBus.block_set.emit(current_block)
 
 
 #func get_block_path():

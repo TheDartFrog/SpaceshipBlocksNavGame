@@ -54,7 +54,7 @@ func blockPatternInterpreter(blockPatternToInterpret, objectToUpdate):
 	
 
 
-func spawnNextBlock() -> Node2D:
+func spawnNextBlock(_old_block = null) -> Node2D:
 	print("Spawning next block...")
 	
 	## TODO: czy tak to spawnować żeby działało na gridzie? xdd

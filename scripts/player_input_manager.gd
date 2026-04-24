@@ -3,7 +3,14 @@ class_name PlayerInputManager
 
 @onready var block_spawner = $"../CanvasLayer/MainViewContainer/SubViewport/UpcomingBlockManagerScene"
 
+var input_ceased: bool = false
+
+func _ready() -> void:
+	Global.player_input_manager = self
+
 func _unhandled_input(_event: InputEvent) -> void:
+	if input_ceased:
+		return
 	if Input.is_action_just_pressed("left_click"):
 		handle_left_click()
 		return
