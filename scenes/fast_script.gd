@@ -5,6 +5,7 @@ var dead: bool = false
 func _process(delta: float) -> void:
 	if !dead:
 		return
+		
 	material.set_shader_parameter("curvature", lerp(material.get_shader_parameter("curvature"), 0.0, (delta * 100)))
 	if material.get_shader_parameter("curvature") <= 0.0:
 		var wait_timer = Timer.new()
@@ -15,4 +16,5 @@ func _process(delta: float) -> void:
 		
 func reload_game():
 	get_tree().reload_current_scene()
-	material.set_shader_parameter("curvature", 6.0)
+	dead = false
+	#material.set_shader_parameter("curvature", lerp(material.get_shader_parameter("curvature"), 6.0, (delta * 100)))
