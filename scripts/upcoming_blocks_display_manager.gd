@@ -11,9 +11,6 @@ var waitBetweenDisplays = 0.4 ## in seconds
 func _ready() -> void:
 	pass # Replace with function body.
 
-
-
-
 func updateUpcomingBlockPreview(threeUpcomingBlocks):
 	print("Updating upcoming block previews...")
 	
@@ -32,14 +29,9 @@ func updateUpcomingBlockPreview(threeUpcomingBlocks):
 
 func spaghetti(blockPatternToInterpret, objectToUpdate):
 	for i in 4:
-		#print(i)
 		for j in 4:
-			#print(Global.blockDictionary[blockPatternToInterpret][i][j])
 			var tilePos = Vector2i(i, j)
 			if Global.blockDictionary[blockPatternToInterpret][i][j] > 0:
-				#print(tilePos)
-				#print(Global.blockDictionary[blockPatternToInterpret][i][j]-1)
-				#print("\n")
 				objectToUpdate.set_cell(tilePos, Global.blockDictionary[blockPatternToInterpret][i][j]-1, Vector2i(0, 0) )
 			elif Global.blockDictionary[blockPatternToInterpret][i][j] == 0:
 				objectToUpdate.set_cell(tilePos, -1, Vector2i(0, 0) )
@@ -48,8 +40,6 @@ func spaghetti(blockPatternToInterpret, objectToUpdate):
 
 func blinkDisplay(displayToBlink):
 	for i in 4:
-		#print(i)
 		for j in 4:
-			#print(Global.blockDictionary[blockPatternToInterpret][i][j])
 			var tilePos = Vector2i(i, j)
 			displayToBlink.set_cell(tilePos, -1, Vector2i(0, 0) )
