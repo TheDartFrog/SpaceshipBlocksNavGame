@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var main_view: SubViewport = $CanvasLayer/MainViewContainer/SubViewport
+@onready var main_view_container = $CanvasLayer/MainViewContainer
 @onready var blocks_spawner = $CanvasLayer/MainViewContainer/SubViewport/UpcomingBlockManagerScene
 @onready var rocket = $CanvasLayer/MainViewContainer/SubViewport/RocketScene
 
@@ -65,7 +66,7 @@ func _ready():
 			filtered_array.append(cell)
 	print(filtered_array)
 	
-	rocket.global_position = current_gridmap.tilemap.to_global(current_gridmap.tilemap.map_to_local(Vector2i(4, 12)))
+	rocket.global_position = current_gridmap.tilemap.to_global(current_gridmap.tilemap.map_to_local(Vector2i(4, 13)))
 	
 	
 
@@ -87,14 +88,22 @@ func _process(_delta: float) -> void:
 		if found_snap:
 			var end_reached: bool = false
 			var cells_above: Array = []
+			var asteroid_exeption: Array = []
 			for cell in cells_to_set:
-				current_gridmap.tilemap.set_cell(cell, 3, Vector2(2,0))
+				if current_gridmap.tilemap.get_cell_tile_data(cell) != null:
+					if current_gridmap.tilemap.get_cell_tile_data(cell).get_custom_data("asteroid") == true:
+						asteroid_exeption.append(cell)
+					#lose_game()
+				if cell not in asteroid_exeption:
+					current_gridmap.tilemap.set_cell(cell, 3, Vector2(2,0))
 				var cell_to_check = current_gridmap.tilemap.local_to_map(current_gridmap.tilemap.to_local(current_block.tilemap.to_global(current_block.tilemap.map_to_local(cell))))
 				if cell_to_check.y <= 0:
 					end_reached = true
 					var converted_cell = all_gridmaps[2].tilemap.local_to_map(all_gridmaps[2].tilemap.to_local(current_gridmap.tilemap.to_global(current_gridmap.tilemap.map_to_local(cell))))
 					cells_above.append(converted_cell)
 					print("cell_above: ", converted_cell , " cell_to_check: ", cell_to_check, " finish_line: ", current_gridmap.finish_line)
+			if !asteroid_exeption.is_empty():
+				lose_game(asteroid_exeption.pick_random())
 			
 					
 					
@@ -108,6 +117,26 @@ func _process(_delta: float) -> void:
 						#last_cell = cell
 				_load_next_stage(cells_above)
 
+
+func lose_game(final_position):
+	var rocket_position: Vector2i = current_gridmap.tilemap.local_to_map(current_gridmap.tilemap.to_local(rocket.global_position))
+	var end_position = final_position
+	
+	var end_path = current_gridmap.astar_pathfinding.get_id_path(rocket_position, end_position)
+	var filtered_path = []
+	
+	for cell in end_path:
+		filtered_path.append(current_gridmap.tilemap.to_global(current_gridmap.tilemap.map_to_local(cell)))
+	
+	rocket.start_moving(filtered_path)
+	
+	Global.player_input_manager.input_ceased = true
+	
+	await SignalBus.rocket_finished
+	
+	print("shader ", main_view_container.material.get_shader_parameter("curvature"))
+	main_view_container.dead = true
+	
 
 #func get_block_path():
 	#var block_tilemap_pos = current_gridmap.tilemap.local_to_map(blocks_spawner.current_block.position)

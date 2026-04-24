@@ -1,11 +1,11 @@
-[gd_scene load_steps=22 format=3 uid="uid://bdapdcvxgfhep"]
+[gd_scene load_steps=23 format=3 uid="uid://bdapdcvxgfhep"]
 
 [ext_resource type="Script" uid="uid://d1qgjfx0rhhvj" path="res://scripts/main_game_handler.gd" id="1_qsd30"]
 [ext_resource type="Texture2D" uid="uid://dsb2ae4jssxl0" path="res://assets/parallax/background.png" id="2_4a4v8"]
 [ext_resource type="PackedScene" uid="uid://bdh8sl8pst1od" path="res://scenes/player_input_manager.tscn" id="2_cofsh"]
 [ext_resource type="Shader" uid="uid://s5iaftbk0r66" path="res://scripts/shaders/crt_shader.gdshader" id="2_qsd30"]
 [ext_resource type="PackedScene" uid="uid://be7nsty3ph4il" path="res://scenes/upcoming_blocks.tscn" id="2_u2xxy"]
-[ext_resource type="Shader" path="res://scenes/parallax_shader.gdshader" id="3_d383n"]
+[ext_resource type="Shader" uid="uid://b2oeot8foj3fl" path="res://scenes/parallax_shader.gdshader" id="3_d383n"]
 [ext_resource type="Texture2D" uid="uid://8j8tcges82qs" path="res://assets/parallax/stars_01.png" id="4_oa6bs"]
 [ext_resource type="Texture2D" uid="uid://52spdjaefy83" path="res://assets/parallax/stars_02.png" id="5_ef5fi"]
 [ext_resource type="Texture2D" uid="uid://4bmovpgs1kdx" path="res://assets/parallax/stars_03.png" id="6_i4o3e"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://dqa5swp643yja" path="res://assets/parallax/stars_ant_holyhell.png" id="10_qwe6u"]
 [ext_resource type="PackedScene" uid="uid://cwe0gyhyrlssy" path="res://scenes/music_manager.tscn" id="11_nt1we"]
 [ext_resource type="Texture2D" uid="uid://bo8iw74adihh4" path="res://assets/Wizja artystyczna nawigacja .png" id="12_jy87q"]
+[ext_resource type="Script" uid="uid://gy8ogv3nfbhp" path="res://scenes/fast_script.gd" id="15_nbtmf"]
 [ext_resource type="PackedScene" uid="uid://bpnk0imqpvfpe" path="res://scenes/rocket_scene.tscn" id="16_4ly7o"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_oa6bs"]
@@ -128,6 +129,7 @@ offset_top = 27.0
 offset_right = 745.0
 offset_bottom = 619.0
 stretch = true
+script = ExtResource("15_nbtmf")
 
 [node name="SubViewport" type="SubViewport" parent="CanvasLayer/MainViewContainer"]
 handle_input_locally = false
