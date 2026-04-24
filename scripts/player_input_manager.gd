@@ -41,7 +41,17 @@ func handle_right_click():
 func handle_block_down():
 	if block_spawner.current_block == null:
 		return
+	var xd = block_spawner.current_block.name
 	block_spawner.current_block.is_falling = true
+	var death_timer = Timer.new()
+	add_child(death_timer)
+	death_timer.start(3.0)
+	
+	await death_timer.timeout
+	if block_spawner.current_block.name == xd:
+		block_spawner.spawnNextBlock()
+	input_ceased = false
+	
 
 func rotate_block_left():
 	if block_spawner.current_block == null:

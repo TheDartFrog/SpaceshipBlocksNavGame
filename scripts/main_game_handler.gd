@@ -116,6 +116,8 @@ func _process(_delta: float) -> void:
 
 func _load_next_stage(cells_to_set: Array = []):
 	
+	Global.player_input_manager.input_ceased = true
+	
 	var array_of_roads: Array = []
 	var rocket_position: Vector2i = current_gridmap.tilemap.local_to_map(current_gridmap.tilemap.to_local(rocket.global_position))
 	
@@ -195,6 +197,8 @@ func _load_next_stage(cells_to_set: Array = []):
 	.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_LINEAR)
 	
 	await gridmap_2_position_tween.finished
+	
+	Global.player_input_manager.input_ceased = false
 	
 	tween_finished.emit()
 	
