@@ -172,24 +172,26 @@ func _load_next_stage(cells_to_set: Array = []):
 	gridmap_instance.position = INCOMING_PLUS_POSITION
 	
 	
+	var tweens_speed: float = 1.5
+	
 	var gridmap_0_position_tween = create_tween()
-	gridmap_0_position_tween.tween_property(all_gridmaps.front(), "position", OLD_PLUS_POSITION, 3.0)\
-	.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_LINEAR)
+	gridmap_0_position_tween.tween_property(all_gridmaps.front(), "position", OLD_PLUS_POSITION, tweens_speed)\
+	.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_BACK)
 	
 	var gridmap_1_position_tween = create_tween()
-	gridmap_1_position_tween.tween_property(current_gridmap, "position", gridmap_positions[0], 3.0)\
-	.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_LINEAR)
+	gridmap_1_position_tween.tween_property(current_gridmap, "position", gridmap_positions[0], tweens_speed)\
+	.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_BACK)
 	
 	var gridmap_2_position_tween = create_tween()
-	gridmap_2_position_tween.tween_property(all_gridmaps.back(), "position", gridmap_positions[1], 3.0)\
-	.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_LINEAR)
+	gridmap_2_position_tween.tween_property(all_gridmaps.back(), "position", gridmap_positions[1], tweens_speed)\
+	.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_BACK)
 	
 	var gridmap_3_position_tween = create_tween()
-	gridmap_3_position_tween.tween_property(gridmap_instance, "position", gridmap_positions[2], 3.0)\
-	.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_LINEAR)
+	gridmap_3_position_tween.tween_property(gridmap_instance, "position", gridmap_positions[2], tweens_speed)\
+	.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_BACK)
 	
 	var rocket_position_tween = create_tween()
-	rocket_position_tween.tween_property(rocket, "position", Vector2(rocket.position.x, rocket.position.y + (gridmap_positions[1].y - gridmap_positions[2].y)), 3.0)\
+	rocket_position_tween.tween_property(rocket, "position", Vector2(rocket.position.x, rocket.position.y + (gridmap_positions[1].y - gridmap_positions[2].y)), tweens_speed)\
 	.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_LINEAR)
 	
 	await gridmap_2_position_tween.finished

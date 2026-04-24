@@ -3,7 +3,7 @@ extends Node2D
 @onready var tilemap = $BlockTemplateScene
 
 var is_falling: bool = false
-var base_gravity: float = 5.0
+var base_gravity: float = 10.0
 var is_set: bool = false
 
 func _ready() -> void:

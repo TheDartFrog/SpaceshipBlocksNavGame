@@ -30,10 +30,9 @@ func _ready():
 		for y in range(map_size.y):
 			tilemap.set_cell(Vector2i(x, y), 3, Vector2(0,0))
 	generate_finish_line()
-	#generate_starting_tiles()
 	for x in range(map_size.x):
 		starting_tiles.append(Vector2i(x, map_size.y))
-	
+	generate_starting_tiles()	
 	#tilemap.tile_size = cell_size
 	var tilemap_cells = tilemap.get_used_cells()
 	var cells_to_create_asteroids: Array = []

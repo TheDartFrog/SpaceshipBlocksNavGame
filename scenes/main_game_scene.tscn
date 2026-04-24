@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bdh8sl8pst1od" path="res://scenes/player_input_manager.tscn" id="2_cofsh"]
 [ext_resource type="Shader" uid="uid://s5iaftbk0r66" path="res://scripts/shaders/crt_shader.gdshader" id="2_qsd30"]
 [ext_resource type="PackedScene" uid="uid://be7nsty3ph4il" path="res://scenes/upcoming_blocks.tscn" id="2_u2xxy"]
-[ext_resource type="Shader" path="res://scenes/parallax_shader.gdshader" id="3_d383n"]
+[ext_resource type="Shader" uid="uid://b2oeot8foj3fl" path="res://scenes/parallax_shader.gdshader" id="3_d383n"]
 [ext_resource type="Texture2D" uid="uid://8j8tcges82qs" path="res://assets/parallax/stars_01.png" id="4_oa6bs"]
 [ext_resource type="Texture2D" uid="uid://52spdjaefy83" path="res://assets/parallax/stars_02.png" id="5_ef5fi"]
 [ext_resource type="Texture2D" uid="uid://4bmovpgs1kdx" path="res://assets/parallax/stars_03.png" id="6_i4o3e"]
