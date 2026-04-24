@@ -23,7 +23,7 @@ ALBERT, TREBLA, ANDREW, VERNON, LUIS, TREVOR, PIOTR, RTOIP, BARTEK, MAX, XAM, BE
 
 ## 0 = empty, 1 = pass, 2 = wall
 var blockDictionary: Dictionary = {
-	# REGULAR TETRIS:
+	# REGULAR CLASSIC TILES:
 	# EMPTY BLOCK
 	blockTypesEnums.NONE: [
 	[0, 0, 0, 0], 
@@ -177,7 +177,7 @@ var blockDictionary: Dictionary = {
 	[0, 2, 2, 0], 
 	[2, 2, 0, 0], 
 	[0, 0, 0, 0]],
-	blockTypesEnums.SWARZ20: [
+	blockTypesEnums.SWARZ20: [ #ZOSIA
 	[0, 2, 0, 0], 
 	[2, 2, 2, 0], 
 	[0, 2, 0, 0], 
