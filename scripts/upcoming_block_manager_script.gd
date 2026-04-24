@@ -8,9 +8,6 @@ var nextThreeBlocks = [0, 0, 0]
 
 var current_block
 
-
-@onready var upcomingBlocksDisplay = %UpcomingBlocks 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _ready() -> void:
 	
@@ -58,24 +55,21 @@ func blockPatternInterpreter(blockPatternToInterpret, objectToUpdate):
 
 
 func spawnNextBlock(_old_block = null) -> Node2D:
-	#print("Spawning next block...")
+	print("Spawning next block...")
+	
+	## TODO: czy tak to spawnować żeby działało na gridzie? xdd
+	
 	
 	var blockToAddInstance = blockTemplateScene.instantiate()
 	add_child(blockToAddInstance)
-	#print(blockToAddInstance)
-	#print(nextThreeBlocks)
+	print(blockToAddInstance)
+	print(nextThreeBlocks)
 	blockPatternInterpreter(nextThreeBlocks.pop_front(), blockToAddInstance.tilemap)
 	nextThreeBlocks.append(selectOneBlock())
-	#print(nextThreeBlocks)
-	
+	print(nextThreeBlocks)
 	#add_child(blockToAddInstance)
 	current_block = blockToAddInstance
 	current_block.position = Vector2(15,-255)
-	
-	
-	
-	upcomingBlocksDisplay.updateUpcomingBlockPreview(nextThreeBlocks)
-	
 	return blockToAddInstance
 
 	
