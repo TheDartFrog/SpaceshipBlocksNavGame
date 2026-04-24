@@ -1,16 +1,17 @@
-[gd_scene load_steps=23 format=3 uid="uid://bdapdcvxgfhep"]
+[gd_scene load_steps=24 format=3 uid="uid://bdapdcvxgfhep"]
 
 [ext_resource type="Script" uid="uid://d1qgjfx0rhhvj" path="res://scripts/main_game_handler.gd" id="1_qsd30"]
 [ext_resource type="Texture2D" uid="uid://dsb2ae4jssxl0" path="res://assets/parallax/background.png" id="2_4a4v8"]
 [ext_resource type="PackedScene" uid="uid://bdh8sl8pst1od" path="res://scenes/player_input_manager.tscn" id="2_cofsh"]
 [ext_resource type="Shader" uid="uid://s5iaftbk0r66" path="res://scripts/shaders/crt_shader.gdshader" id="2_qsd30"]
 [ext_resource type="PackedScene" uid="uid://be7nsty3ph4il" path="res://scenes/upcoming_blocks.tscn" id="2_u2xxy"]
-[ext_resource type="Shader" uid="uid://b2oeot8foj3fl" path="res://scenes/parallax_shader.gdshader" id="3_d383n"]
+[ext_resource type="Shader" path="res://scenes/parallax_shader.gdshader" id="3_d383n"]
 [ext_resource type="Texture2D" uid="uid://8j8tcges82qs" path="res://assets/parallax/stars_01.png" id="4_oa6bs"]
 [ext_resource type="Texture2D" uid="uid://52spdjaefy83" path="res://assets/parallax/stars_02.png" id="5_ef5fi"]
 [ext_resource type="Texture2D" uid="uid://4bmovpgs1kdx" path="res://assets/parallax/stars_03.png" id="6_i4o3e"]
 [ext_resource type="Texture2D" uid="uid://b32j1w4l7jgby" path="res://assets/parallax/gradient.png" id="7_cofsh"]
 [ext_resource type="Texture2D" uid="uid://vr45xhgeyenv" path="res://assets/parallax/glow.png" id="7_ef5fi"]
+[ext_resource type="Texture2D" uid="uid://bma8t44ugmhu8" path="res://assets/0101.png" id="9_utd2t"]
 [ext_resource type="PackedScene" uid="uid://bvcld45f8l8nw" path="res://scenes/upcoming_block_manager_scene.tscn" id="10_i4o3e"]
 [ext_resource type="Texture2D" uid="uid://dqa5swp643yja" path="res://assets/parallax/stars_ant_holyhell.png" id="10_qwe6u"]
 [ext_resource type="PackedScene" uid="uid://cwe0gyhyrlssy" path="res://scenes/music_manager.tscn" id="11_nt1we"]
@@ -98,6 +99,11 @@ material = SubResource("ShaderMaterial_qwe6u")
 position = Vector2(575.4, 323)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("6_i4o3e")
+
+[node name="0101" type="Sprite2D" parent="CanvasLayer/BackgroundContainer/SubViewport"]
+position = Vector2(912.99994, 221.99998)
+scale = Vector2(0.21699916, 0.21699916)
+texture = ExtResource("9_utd2t")
 
 [node name="mrowka" type="Sprite2D" parent="CanvasLayer/BackgroundContainer/SubViewport"]
 texture_repeat = 2
