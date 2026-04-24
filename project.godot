@@ -13,12 +13,17 @@ config_version=5
 config/name="SpaceshipBlocksNavGame"
 run/main_scene="uid://bdapdcvxgfhep"
 config/features=PackedStringArray("4.5", "GL Compatibility")
+boot_splash/image="uid://dtt53xnbpd02c"
 config/icon="res://icon.svg"
 
 [autoload]
 
 Global="*res://scripts/global.gd"
 SignalBus="*res://scripts/signal_bus.gd"
+
+[display]
+
+window/stretch/mode="canvas_items"
 
 [input]
 
