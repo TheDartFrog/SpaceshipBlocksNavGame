@@ -1,4 +1,9 @@
-[gd_scene format=3 uid="uid://d0g7aslg0evrj"]
+[gd_scene load_steps=5 format=3 uid="uid://d0g7aslg0evrj"]
+
+[ext_resource type="Theme" uid="uid://duycps0nqtooh" path="res://themes/invisible_panels.tres" id="1_tf0n7"]
+[ext_resource type="Texture2D" uid="uid://4k80k3rtcguh" path="res://assets/placeholders/placeholder_logo.png" id="2_qx3s4"]
+[ext_resource type="Texture2D" uid="uid://clegddk5wdmpy" path="res://assets/placeholders/placeholder_start.png" id="3_l8qw3"]
+[ext_resource type="Texture2D" uid="uid://bmmpqj6dmwi44" path="res://assets/placeholders/placeholder_quit.png" id="4_ofdt7"]
 
 [node name="LeEpicMainmenuUi" type="Control"]
 layout_mode = 3
@@ -18,9 +23,101 @@ grow_vertical = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 
-[node name="Panel" type="Panel" parent="VBoxContainer"]
+[node name="topSpacerLeft" type="Panel" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_tf0n7")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_tf0n7")
+
+[node name="gameLogoName" type="TextureRect" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("2_qx3s4")
+
+[node name="Panel2" type="Panel" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_tf0n7")
+
+[node name="topPanelMiddle" type="Panel" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_tf0n7")
+
+[node name="topSpacerRight" type="Panel" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_tf0n7")
+
+[node name="middleSpacer" type="Panel" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_tf0n7")
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
+
+[node name="bottomLeftSpacer" type="Panel" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_tf0n7")
+
+[node name="playButtonVBox" type="VBoxContainer" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="playTopSpacer" type="Panel" parent="VBoxContainer/HBoxContainer2/playButtonVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_tf0n7")
+
+[node name="playButtonTexture" type="TextureRect" parent="VBoxContainer/HBoxContainer2/playButtonVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("3_l8qw3")
+
+[node name="playBottomSpacer" type="Panel" parent="VBoxContainer/HBoxContainer2/playButtonVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_tf0n7")
+
+[node name="bottomMidSpacer" type="Panel" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_tf0n7")
+
+[node name="quitButtonVBox" type="VBoxContainer" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="quitTopSpacer" type="Panel" parent="VBoxContainer/HBoxContainer2/quitButtonVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_tf0n7")
+
+[node name="quitButtonTexture" type="TextureRect" parent="VBoxContainer/HBoxContainer2/quitButtonVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("4_ofdt7")
+
+[node name="quitBottomSpacer" type="Panel" parent="VBoxContainer/HBoxContainer2/quitButtonVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_tf0n7")
+
+[node name="bottomRightSpacer" type="Panel" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_tf0n7")

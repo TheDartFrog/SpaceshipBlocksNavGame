@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=3 uid="uid://be7nsty3ph4il"]
+
+[ext_resource type="Script" uid="uid://dio1s4x7vrfxc" path="res://scripts/upcoming_blocks_display_manager.gd" id="1_7wfqi"]
+[ext_resource type="PackedScene" uid="uid://c5xlcohvnilps" path="res://scenes/blockTemplateScene.tscn" id="1_wdgro"]
+[ext_resource type="Texture2D" uid="uid://b4mgmvoip0o0b" path="res://assets/placeholders/upcoming_background_placeholder.png" id="4_664b0"]
+
+[node name="UpcomingBlocks" type="Node2D"]
+script = ExtResource("1_7wfqi")
+
+[node name="firstComingBlock" parent="." instance=ExtResource("1_wdgro")]
+
+[node name="Sprite2D" type="Sprite2D" parent="firstComingBlock"]
+z_index = -1
+position = Vector2(60, 60)
+scale = Vector2(0.27, 0.27)
+texture = ExtResource("4_664b0")
+
+[node name="secondComingBlock" parent="." instance=ExtResource("1_wdgro")]
+position = Vector2(0, 150)
+
+[node name="Sprite2D" type="Sprite2D" parent="secondComingBlock"]
+z_index = -1
+position = Vector2(60, 60)
+scale = Vector2(0.27, 0.27)
+texture = ExtResource("4_664b0")
+
+[node name="thirdComingBlock" parent="." instance=ExtResource("1_wdgro")]
+position = Vector2(0, 300)
+
+[node name="Sprite2D" type="Sprite2D" parent="thirdComingBlock"]
+z_index = -1
+position = Vector2(60, 60)
+scale = Vector2(0.27, 0.27)
+texture = ExtResource("4_664b0")
