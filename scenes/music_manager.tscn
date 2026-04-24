@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cwe0gyhyrlssy"]
 
 [ext_resource type="Script" uid="uid://dq2qk3h32k5t4" path="res://scripts/music_manager.gd" id="1_hetdf"]
-[ext_resource type="AudioStream" uid="uid://fxxynot56q0m" path="res://assets/sound/music/MainMenuSong.wav" id="2_hetdf"]
+[ext_resource type="AudioStream" uid="uid://dw5sjnnsiw4np" path="res://assets/sound/music/BackGround_Music_Do_zapętlenia.wav" id="2_hetdf"]
 
 [node name="MusicManager" type="Node"]
 script = ExtResource("1_hetdf")

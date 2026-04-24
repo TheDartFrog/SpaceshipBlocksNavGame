@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bdapdcvxgfhep"]
+[gd_scene load_steps=21 format=3 uid="uid://bdapdcvxgfhep"]
 
 [ext_resource type="Script" uid="uid://d1qgjfx0rhhvj" path="res://scripts/main_game_handler.gd" id="1_qsd30"]
 [ext_resource type="Texture2D" uid="uid://dsb2ae4jssxl0" path="res://assets/parallax/background.png" id="2_4a4v8"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://bvcld45f8l8nw" path="res://scenes/upcoming_block_manager_scene.tscn" id="10_i4o3e"]
 [ext_resource type="Texture2D" uid="uid://dqa5swp643yja" path="res://assets/parallax/stars_ant_holyhell.png" id="10_qwe6u"]
 [ext_resource type="PackedScene" uid="uid://cwe0gyhyrlssy" path="res://scenes/music_manager.tscn" id="11_nt1we"]
+[ext_resource type="Texture2D" uid="uid://bo8iw74adihh4" path="res://assets/Wizja artystyczna nawigacja .png" id="12_jy87q"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_oa6bs"]
 shader = ExtResource("3_d383n")
@@ -110,16 +111,21 @@ texture = ExtResource("7_cofsh")
 
 [node name="MusicManager" parent="CanvasLayer/BackgroundContainer/SubViewport" instance=ExtResource("11_nt1we")]
 
+[node name="WizjaArtystycznaNawigacja" type="Sprite2D" parent="CanvasLayer/BackgroundContainer/SubViewport"]
+position = Vector2(573, 397.00003)
+scale = Vector2(0.44675884, 0.44675884)
+texture = ExtResource("12_jy87q")
+
 [node name="UpcomingBlocks" parent="CanvasLayer" instance=ExtResource("2_u2xxy")]
 unique_name_in_owner = true
-position = Vector2(185, 105)
+position = Vector2(204, 134)
 
 [node name="MainViewContainer" type="SubViewportContainer" parent="CanvasLayer"]
 material = SubResource("ShaderMaterial_d383n")
 offset_left = 399.0
-offset_top = 28.0
+offset_top = 27.0
 offset_right = 745.0
-offset_bottom = 620.0
+offset_bottom = 619.0
 stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="CanvasLayer/MainViewContainer"]
