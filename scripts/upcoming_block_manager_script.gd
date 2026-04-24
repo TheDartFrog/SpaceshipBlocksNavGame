@@ -63,7 +63,10 @@ func spawnNextBlock() -> Node2D:
 	var blockToAddInstance = blockTemplateScene.instantiate()
 	add_child(blockToAddInstance)
 	print(blockToAddInstance)
-	blockPatternInterpreter(nextThreeBlocks[0], blockToAddInstance.tilemap)
+	print(nextThreeBlocks)
+	blockPatternInterpreter(nextThreeBlocks.pop_front(), blockToAddInstance.tilemap)
+	nextThreeBlocks.append(selectOneBlock())
+	print(nextThreeBlocks)
 	#add_child(blockToAddInstance)
 	current_block = blockToAddInstance
 	current_block.position = Vector2(15,-255)

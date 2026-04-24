@@ -1,15 +1,14 @@
-[gd_scene load_steps=6 format=4 uid="uid://c5xlcohvnilps"]
+[gd_scene load_steps=5 format=4 uid="uid://c5xlcohvnilps"]
 
-[ext_resource type="Texture2D" uid="uid://c40y4kgqlal5b" path="res://assets/temp_tile1.png" id="1_06el4"]
-[ext_resource type="Texture2D" uid="uid://dyfsq83aq5l75" path="res://assets/temp_tile2.png" id="2_3aqgh"]
+[ext_resource type="Texture2D" uid="uid://disb0e7rs321a" path="res://assets/placeholders/path_placeholder.png" id="3_dva5t"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3aqgh"]
-texture = ExtResource("1_06el4")
+texture = ExtResource("3_dva5t")
 texture_region_size = Vector2i(30, 30)
 0:0/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dva5t"]
-texture = ExtResource("2_3aqgh")
+texture = ExtResource("3_dva5t")
 texture_region_size = Vector2i(30, 30)
 0:0/0 = 0
 
@@ -19,5 +18,6 @@ sources/0 = SubResource("TileSetAtlasSource_3aqgh")
 sources/1 = SubResource("TileSetAtlasSource_dva5t")
 
 [node name="BlockTemplateScene" type="TileMapLayer"]
+z_index = 2
 tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAACAAAAAAAAAAAAAAADAAAAAAAAAAAAAAADAAEAAAAAAAAAAAACAAEAAAAAAAAAAAABAAEAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAIAAAAAAAAAAAABAAIAAAAAAAAAAAACAAIAAAAAAAAAAAADAAIAAAAAAAAAAAADAAMAAAAAAAAAAAACAAMAAAAAAAAAAAABAAMAAAAAAAAAAAAAAAMAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_juacu")

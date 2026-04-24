@@ -35,7 +35,6 @@ func handle_block_down():
 	if block_spawner.current_block == null:
 		return
 	block_spawner.current_block.is_falling = true
-	SignalBus.block_set.emit()
 
 func rotate_block_left():
 	if block_spawner.current_block == null:

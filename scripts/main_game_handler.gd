@@ -19,6 +19,7 @@ var OLD_PLUS_POSITION: Vector2
 
 var gridmap_positions: Array = []
 var gridmap_scene = preload("res://scenes/gridmap_scene.tscn")
+var filtered_array = []
 
 func _ready():
 	
@@ -46,22 +47,35 @@ func _ready():
 		
 	current_gridmap = all_gridmaps[1]
 	current_gridmap.visible = true
+	current_gridmap.generate_starting_tiles()
+	all_gridmaps[2].visible = true
 	SignalBus.end_reached.connect(_load_next_stage)
 	#all_gridmaps.append(current_gridmap)
+	var array_to_filter = current_gridmap.tilemap.get_used_cells()
+	for cell in array_to_filter:
+		if current_gridmap.tilemap.get_cell_source_id(cell) == 2:
+			filtered_array.append(cell)
+	print(filtered_array)
 	
 	
-	
-	var testing_timer = Timer.new()
-	add_child(testing_timer)
-	testing_timer.start(2.0)
-	
-	await testing_timer.timeout
-	print("lesss go")
-	
-	blocks_spawner.spawnNextBlock()
-	
-	#_load_next_stage()
 
+
+func _process(delta: float) -> void:
+	
+	if blocks_spawner.current_block != null && blocks_spawner.current_block.is_falling == true:
+		var current_block_tilemap_pos = current_gridmap.tilemap.local_to_map(current_gridmap.tilemap.to_local(blocks_spawner.current_block.global_position))
+		if current_gridmap.tilemap.get_cell_tile_data(current_block_tilemap_pos) != null:
+			if current_gridmap.tilemap.get_cell_tile_data(current_block_tilemap_pos + Vector2i(0, 1)).get_custom_data("is_stopable") == true:
+				var snap = current_gridmap.tilemap.map_to_local(current_block_tilemap_pos)
+				blocks_spawner.current_block.global_position = current_gridmap.tilemap.to_global(snap)
+				blocks_spawner.current_block.is_falling = false
+				SignalBus.block_set.emit()
+
+
+#func get_block_path():
+	#var block_tilemap_pos = current_gridmap.tilemap.local_to_map(blocks_spawner.current_block.position)
+	#
+	#current_gridmap.astar_pathfinding.get_id_path(block_tilemap_pos, )
 
 func _load_next_stage():
 	var gridmap_instance = gridmap_scene.instantiate()

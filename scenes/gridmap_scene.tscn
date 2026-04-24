@@ -1,30 +1,21 @@
-[gd_scene load_steps=9 format=3 uid="uid://d37pip3p5m2yk"]
+[gd_scene load_steps=5 format=3 uid="uid://d37pip3p5m2yk"]
 
 [ext_resource type="Script" uid="uid://dvib32p7kfjoo" path="res://scripts/gridmap_scene_handler.gd" id="1_kmrlj"]
-[ext_resource type="Texture2D" uid="uid://u8s5hkutktyt" path="res://assets/placeholders/asteroid_placeholder.png" id="2_mjf2a"]
-[ext_resource type="Texture2D" uid="uid://d4h8dculkbyd2" path="res://assets/placeholders/tile_placeholder.png" id="3_mjf2a"]
-[ext_resource type="Texture2D" uid="uid://disb0e7rs321a" path="res://assets/placeholders/path_placeholder.png" id="4_gajvb"]
+[ext_resource type="Texture2D" uid="uid://ctvmrcrrd8vol" path="res://assets/placeholders/tilemap_test.png" id="5_pdmy3"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mjf2a"]
-texture = ExtResource("2_mjf2a")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q6a3r"]
+texture = ExtResource("5_pdmy3")
 texture_region_size = Vector2i(30, 30)
+1:0/0 = 0
 0:0/0 = 0
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gajvb"]
-texture = ExtResource("3_mjf2a")
-texture_region_size = Vector2i(30, 30)
-0:0/0 = 0
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pdmy3"]
-texture = ExtResource("4_gajvb")
-texture_region_size = Vector2i(30, 30)
-0:0/0 = 0
+2:0/0 = 0
+2:0/0/custom_data_0 = true
 
 [sub_resource type="TileSet" id="TileSet_ty6u0"]
 tile_size = Vector2i(30, 30)
-sources/0 = SubResource("TileSetAtlasSource_mjf2a")
-sources/1 = SubResource("TileSetAtlasSource_gajvb")
-sources/2 = SubResource("TileSetAtlasSource_pdmy3")
+custom_data_layer_0/name = "is_stopable"
+custom_data_layer_0/type = 1
+sources/3 = SubResource("TileSetAtlasSource_q6a3r")
 
 [node name="GridmapScene" type="Node2D"]
 script = ExtResource("1_kmrlj")
