@@ -1,10 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://bpnk0imqpvfpe"]
 
-[ext_resource type="Texture2D" uid="uid://b723l5lvdibdu" path="res://assets/placeholders/rocket_placeholder.png" id="1_lbql8"]
 [ext_resource type="Script" uid="uid://b2dertual3mh7" path="res://scripts/rocket_handler.gd" id="1_tgp61"]
+[ext_resource type="Texture2D" uid="uid://dhg8siucwao8t" path="res://assets/Rakieta.png" id="2_tgp61"]
 
 [node name="RocketScene" type="Node2D"]
 script = ExtResource("1_tgp61")
 
 [node name="RocketSprite" type="Sprite2D" parent="."]
-texture = ExtResource("1_lbql8")
+scale = Vector2(0.029283274, 0.029283274)
+texture = ExtResource("2_tgp61")
