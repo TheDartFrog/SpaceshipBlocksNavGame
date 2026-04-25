@@ -35,9 +35,16 @@ func _ready():
 	generate_starting_tiles()	
 	#tilemap.tile_size = cell_size
 	var tilemap_cells = tilemap.get_used_cells()
+	var tilemap_cells_viable_for_asteroids: Array = []
+	for cell in tilemap_cells:
+		if cell not in finish_line && cell not in starting_tiles: 
+			tilemap_cells_viable_for_asteroids.append(cell)
+			
 	var cells_to_create_asteroids: Array = []
+	
 	for cell in range(max_asteroid_cells):
-		cells_to_create_asteroids.append(tilemap_cells.pick_random())
+		cells_to_create_asteroids.append(tilemap_cells_viable_for_asteroids.pick_random())
+	
 	for cell in cells_to_create_asteroids:
 		tilemap.set_cell(cell, 3, Vector2(1,0))
 		

@@ -56,9 +56,9 @@ func handle_block_down():
 func rotate_block_left():
 	if block_spawner.current_block == null:
 		return
-	block_spawner.current_block.global_rotation_degrees -= 90.0
+	block_spawner.current_block.rotate_left()
 
 func rotate_block_right():
 	if block_spawner.current_block == null:
 		return
-	block_spawner.current_block.global_rotation_degrees += 90.0
+	block_spawner.current_block.rotate_right()

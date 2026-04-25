@@ -1,11 +1,12 @@
-[gd_scene load_steps=24 format=3 uid="uid://bdapdcvxgfhep"]
+[gd_scene load_steps=28 format=3 uid="uid://bdapdcvxgfhep"]
 
 [ext_resource type="Script" uid="uid://d1qgjfx0rhhvj" path="res://scripts/main_game_handler.gd" id="1_qsd30"]
 [ext_resource type="Texture2D" uid="uid://dsb2ae4jssxl0" path="res://assets/parallax/background.png" id="2_4a4v8"]
 [ext_resource type="PackedScene" uid="uid://bdh8sl8pst1od" path="res://scenes/player_input_manager.tscn" id="2_cofsh"]
 [ext_resource type="Shader" uid="uid://s5iaftbk0r66" path="res://scripts/shaders/crt_shader.gdshader" id="2_qsd30"]
 [ext_resource type="PackedScene" uid="uid://be7nsty3ph4il" path="res://scenes/upcoming_blocks.tscn" id="2_u2xxy"]
-[ext_resource type="Shader" path="res://scenes/parallax_shader.gdshader" id="3_d383n"]
+[ext_resource type="Shader" uid="uid://b2oeot8foj3fl" path="res://scenes/parallax_shader.gdshader" id="3_d383n"]
+[ext_resource type="Script" uid="uid://d1333vugm7ncx" path="res://scripts/parallax_handler.gd" id="3_owy5r"]
 [ext_resource type="Texture2D" uid="uid://8j8tcges82qs" path="res://assets/parallax/stars_01.png" id="4_oa6bs"]
 [ext_resource type="Texture2D" uid="uid://52spdjaefy83" path="res://assets/parallax/stars_02.png" id="5_ef5fi"]
 [ext_resource type="Texture2D" uid="uid://4bmovpgs1kdx" path="res://assets/parallax/stars_03.png" id="6_i4o3e"]
@@ -22,7 +23,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_oa6bs"]
 shader = ExtResource("3_d383n")
 shader_parameter/speed_x = 0.0
-shader_parameter/speed_y = -0.05
+shader_parameter/speed_y = -0.025
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_u2xxy"]
 shader = ExtResource("3_d383n")
@@ -47,6 +48,20 @@ shader_parameter/ca_strength = 2.5
 shader_parameter/blur_strength = 0.5
 shader_parameter/effect_visibility = 0.50000002375
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_utd2t"]
+shader = ExtResource("2_qsd30")
+shader_parameter/curvature = 6.0000000894072
+shader_parameter/vignette_multiplier = 2.0
+shader_parameter/ca_strength = 2.5
+shader_parameter/blur_strength = 0.5
+shader_parameter/effect_visibility = 0.50000002375
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_utd2t"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Theme" id="Theme_utd2t"]
+Panel/styles/panel = SubResource("StyleBoxFlat_utd2t")
+
 [node name="MainScene" type="Node2D"]
 script = ExtResource("1_qsd30")
 map_size = Vector2i(9, 13)
@@ -67,6 +82,7 @@ stretch = true
 handle_input_locally = false
 size = Vector2i(1153, 649)
 render_target_update_mode = 4
+script = ExtResource("3_owy5r")
 
 [node name="BackgroundLayer" type="Sprite2D" parent="CanvasLayer/BackgroundContainer/SubViewport"]
 position = Vector2(575.4, 323)
@@ -124,10 +140,6 @@ position = Vector2(573, 397.00003)
 scale = Vector2(0.44675884, 0.44675884)
 texture = ExtResource("12_jy87q")
 
-[node name="UpcomingBlocks" parent="CanvasLayer" instance=ExtResource("2_u2xxy")]
-unique_name_in_owner = true
-position = Vector2(204, 134)
-
 [node name="MainViewContainer" type="SubViewportContainer" parent="CanvasLayer"]
 material = SubResource("ShaderMaterial_d383n")
 offset_left = 399.0
@@ -148,3 +160,46 @@ render_target_update_mode = 4
 
 [node name="RocketScene" parent="CanvasLayer/MainViewContainer/SubViewport" instance=ExtResource("16_4ly7o")]
 z_index = 5
+
+[node name="Background" type="TextureRect" parent="CanvasLayer/MainViewContainer/SubViewport"]
+offset_left = -779.0
+offset_top = -384.0
+offset_right = 1269.0
+offset_bottom = 696.0
+texture = ExtResource("2_4a4v8")
+
+[node name="NextBlocksMonitor" type="SubViewportContainer" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_utd2t")
+offset_left = 196.0
+offset_top = 123.0
+offset_right = 358.0
+offset_bottom = 568.0
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/NextBlocksMonitor"]
+handle_input_locally = false
+size = Vector2i(162, 445)
+render_target_update_mode = 4
+
+[node name="Background" type="Panel" parent="CanvasLayer/NextBlocksMonitor/SubViewport"]
+offset_right = 165.0
+offset_bottom = 445.0
+theme = SubResource("Theme_utd2t")
+
+[node name="UpcomingBlocks" parent="CanvasLayer/NextBlocksMonitor/SubViewport" instance=ExtResource("2_u2xxy")]
+position = Vector2(8, 10)
+
+[node name="CurrentStage" type="Label" parent="CanvasLayer/NextBlocksMonitor/SubViewport"]
+offset_left = 10.0
+offset_top = 285.0
+offset_right = 154.0
+offset_bottom = 342.0
+text = "CURRENT STAGE: 1
+"
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer/NextBlocksMonitor/SubViewport"]
+offset_left = 12.0
+offset_top = 141.0
+offset_right = 81.0
+offset_bottom = 164.0
+text = "SCORE: 0"

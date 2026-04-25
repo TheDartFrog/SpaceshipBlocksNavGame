@@ -1,8 +1,8 @@
 extends Node
 
-@onready var firstPreview = $firstComingBlock
-@onready var secondPreview = $secondComingBlock
-@onready var thirdPreview = $thirdComingBlock
+@onready var firstPreview = $FirstView/SubViewport/firstComingBlock
+@onready var secondPreview = $SecondView/SubViewport/secondComingBlock
+@onready var thirdPreview = $ThirdView/SubViewport/thirdComingBlock
 
 var blinkTime = 0.4 ## in seconds
 var waitBetweenDisplays = 0.4 ## in seconds
@@ -42,4 +42,5 @@ func blinkDisplay(displayToBlink):
 	for i in 4:
 		for j in 4:
 			var tilePos = Vector2i(i, j)
-			displayToBlink.set_cell(tilePos, -1, Vector2i(0, 0) )
+			#displayToBlink.set_cell(tilePos, -1, Vector2i(0, 0) ) ##TODO fix this!!
+		

@@ -9,7 +9,7 @@ var nextThreeBlocks = [0, 0, 0]
 var current_block
 
 
-@onready var upcomingBlocksDisplay = %UpcomingBlocks 
+@onready var upcomingBlocksDisplay = $"../../../NextBlocksMonitor/SubViewport/UpcomingBlocks"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _ready() -> void:
