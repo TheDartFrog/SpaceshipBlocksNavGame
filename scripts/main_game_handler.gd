@@ -134,7 +134,8 @@ func lose_game(final_position):
 		if current_gridmap.tilemap.get_cell_tile_data(cell) != null:
 			if current_gridmap.tilemap.get_cell_tile_data(cell).get_custom_data("asteroid") == false &&\
 			current_gridmap.tilemap.get_cell_tile_data(cell).get_custom_data("is_stopable") == false:
-				current_gridmap.astar_pathfinding.set_point_solid(cell)
+				if current_gridmap.astar_pathfinding.region.has_point(cell):
+					current_gridmap.astar_pathfinding.set_point_solid(cell)
 	
 	var end_path = current_gridmap.astar_pathfinding.get_id_path(rocket_position, end_position)
 	var filtered_path = []
@@ -190,8 +191,8 @@ func _load_next_stage(cells_to_set: Array = []):
 			filtered_array_of_roads.append(cell)
 	
 	for cell in current_gridmap.tilemap.get_used_cells():
-		if cell not in filtered_array_of_roads:
-			current_gridmap.astar_pathfinding.set_point_solid(cell)
+		if cell not in filtered_array_of_roads && current_gridmap.astar_pathfinding.region.has_point(cell):
+				current_gridmap.astar_pathfinding.set_point_solid(cell)
 	
 	var last_cell_in_path
 	for cell in current_gridmap.tilemap.get_used_cells():
@@ -228,7 +229,7 @@ func _load_next_stage(cells_to_set: Array = []):
 	
 	var tweens_speed: float = 2.5
 	
-	#parallax_manager.speed_up_parallax()
+	parallax_manager.speed_up_parallax()
 	
 	
 	var gridmap_0_position_tween = create_tween()

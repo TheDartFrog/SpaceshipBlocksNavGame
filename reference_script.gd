@@ -21,7 +21,7 @@ func rotate_right():
 		arr.append(tilemap.to_global(tilemap.map_to_local(cell)))
 		
 	
-	print("pre rotation: ", arr)
+	#print("pre rotation: ", arr)
 	
 	var rotation_tween = create_tween()
 	rotation_tween.tween_property(self, "global_rotation_degrees", global_rotation_degrees + 90.0, .25)\
@@ -34,7 +34,7 @@ func rotate_right():
 	for cell in tilemap.get_used_cells():
 		arr0.append(tilemap.to_global(tilemap.map_to_local(cell)))
 		
-	print("post rotation: ", arr0)
+	#print("post rotation: ", arr0)
 
 func rotate_left():
 	if rotating:

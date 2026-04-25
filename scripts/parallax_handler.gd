@@ -28,8 +28,8 @@ func speed_up_parallax():
 	
 	await between_timer.timeout
 	#
-	for layer in layers_combined:
-		var speed_back = create_tween()
-		print("speed: ", each_layer_base_speed[each_layer_base_speed.find(layer)])
-		speed_back.tween_property(layer, "material:shader_parameter/speed_y", each_layer_base_speed[layers_combined.find(layer)], .75)\
-		.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
+	#for layer in layers_combined:
+		#var speed_back = create_tween()
+		#print("speed: ", each_layer_base_speed[each_layer_base_speed.find(layer)])
+		#speed_back.tween_property(layer, "material:shader_parameter/speed_y", each_layer_base_speed[layers_combined.find(layer)], .75)\
+		#.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
