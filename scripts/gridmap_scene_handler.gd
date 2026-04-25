@@ -22,7 +22,7 @@ var starting_tiles: Array = []
 
 ## vars
 var map_size: Vector2i
-var max_asteroid_cells: int = randi_range(3, 10)
+var max_asteroid_cells: int = randi_range(6, 12)
 var finish_line: Array = []
 
 func _ready():
@@ -46,11 +46,12 @@ func _ready():
 		cells_to_create_asteroids.append(tilemap_cells_viable_for_asteroids.pick_random())
 	
 	for cell in cells_to_create_asteroids:
-		tilemap.set_cell(cell, 3, Vector2(1,0))
+		tilemap.set_cell(cell, 3, Vector2(1,randi_range(0,2)))
 		
 	astar_pathfinding.region = tilemap.get_used_rect()
 	astar_pathfinding.cell_size = Vector2(30.0,30.0)
 	astar_pathfinding.default_compute_heuristic = AStarGrid2D.HEURISTIC_MANHATTAN
+	astar_pathfinding.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
 	
 	astar_pathfinding.update()
 	

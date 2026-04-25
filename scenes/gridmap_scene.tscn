@@ -1,10 +1,10 @@
 [gd_scene load_steps=5 format=3 uid="uid://d37pip3p5m2yk"]
 
 [ext_resource type="Script" uid="uid://dvib32p7kfjoo" path="res://scripts/gridmap_scene_handler.gd" id="1_kmrlj"]
-[ext_resource type="Texture2D" uid="uid://ctvmrcrrd8vol" path="res://assets/placeholders/tilemap_test.png" id="5_pdmy3"]
+[ext_resource type="Texture2D" uid="uid://c7mq15g567fnd" path="res://assets/tiles_new_newer.png" id="2_ty6u0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q6a3r"]
-texture = ExtResource("5_pdmy3")
+texture = ExtResource("2_ty6u0")
 texture_region_size = Vector2i(30, 30)
 1:0/0 = 0
 1:0/0/custom_data_1 = true
@@ -12,6 +12,11 @@ texture_region_size = Vector2i(30, 30)
 2:0/0 = 0
 2:0/0/custom_data_0 = true
 3:0/0 = 0
+1:1/0 = 0
+1:1/0/custom_data_1 = true
+1:2/0 = 0
+1:2/0/custom_data_1 = true
+2:1/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_ty6u0"]
 tile_size = Vector2i(30, 30)

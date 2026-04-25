@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://bdapdcvxgfhep"]
+[gd_scene load_steps=30 format=3 uid="uid://bdapdcvxgfhep"]
 
 [ext_resource type="Script" uid="uid://d1qgjfx0rhhvj" path="res://scripts/main_game_handler.gd" id="1_qsd30"]
 [ext_resource type="Texture2D" uid="uid://dsb2ae4jssxl0" path="res://assets/parallax/background.png" id="2_4a4v8"]
@@ -19,6 +19,8 @@
 [ext_resource type="Texture2D" uid="uid://bo8iw74adihh4" path="res://assets/Wizja artystyczna nawigacja .png" id="12_jy87q"]
 [ext_resource type="Script" uid="uid://gy8ogv3nfbhp" path="res://scenes/fast_script.gd" id="15_nbtmf"]
 [ext_resource type="PackedScene" uid="uid://bpnk0imqpvfpe" path="res://scenes/rocket_scene.tscn" id="16_4ly7o"]
+[ext_resource type="Texture2D" uid="uid://vbu12m6d5uli" path="res://assets/score_and_rounds_monitor.png" id="20_bwrmh"]
+[ext_resource type="Texture2D" uid="uid://6iefj5a01wph" path="res://assets/placeholders/logo.png" id="21_r7he4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_oa6bs"]
 shader = ExtResource("3_d383n")
@@ -167,39 +169,54 @@ offset_top = -384.0
 offset_right = 1269.0
 offset_bottom = 696.0
 texture = ExtResource("2_4a4v8")
+metadata/_edit_lock_ = true
+
+[node name="GameLogo" type="Sprite2D" parent="CanvasLayer/MainViewContainer/SubViewport"]
+visible = false
+position = Vector2(173, 69)
+scale = Vector2(0.55, 0.55)
+texture = ExtResource("21_r7he4")
 
 [node name="NextBlocksMonitor" type="SubViewportContainer" parent="CanvasLayer"]
 material = SubResource("ShaderMaterial_utd2t")
 offset_left = 196.0
-offset_top = 123.0
+offset_top = 41.0
 offset_right = 358.0
 offset_bottom = 568.0
 stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="CanvasLayer/NextBlocksMonitor"]
 handle_input_locally = false
-size = Vector2i(162, 445)
+size = Vector2i(162, 527)
 render_target_update_mode = 4
 
 [node name="Background" type="Panel" parent="CanvasLayer/NextBlocksMonitor/SubViewport"]
 offset_right = 165.0
-offset_bottom = 445.0
+offset_bottom = 555.0
 theme = SubResource("Theme_utd2t")
 
 [node name="UpcomingBlocks" parent="CanvasLayer/NextBlocksMonitor/SubViewport" instance=ExtResource("2_u2xxy")]
-position = Vector2(8, 10)
+position = Vector2(8, 87)
+
+[node name="ScoreBackground" type="TextureRect" parent="CanvasLayer/NextBlocksMonitor/SubViewport"]
+offset_left = 16.0
+offset_top = 7.0
+offset_right = 278.0
+offset_bottom = 136.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("20_bwrmh")
 
 [node name="CurrentStage" type="Label" parent="CanvasLayer/NextBlocksMonitor/SubViewport"]
-offset_left = 10.0
-offset_top = 285.0
-offset_right = 154.0
-offset_bottom = 342.0
-text = "CURRENT STAGE: 1
+offset_left = 34.0
+offset_top = 18.0
+offset_right = 105.0
+offset_bottom = 67.0
+text = "STAGE: 1
 "
 
 [node name="ScoreLabel" type="Label" parent="CanvasLayer/NextBlocksMonitor/SubViewport"]
-offset_left = 12.0
-offset_top = 141.0
-offset_right = 81.0
-offset_bottom = 164.0
+offset_left = 34.0
+offset_top = 37.0
+offset_right = 103.0
+offset_bottom = 60.0
 text = "SCORE: 0"

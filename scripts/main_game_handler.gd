@@ -73,8 +73,9 @@ func _ready():
 	print(filtered_array)
 	
 	rocket.global_position = current_gridmap.tilemap.to_global(current_gridmap.tilemap.map_to_local(Vector2i(4, 13)))
+	rocket.look_at(Vector2(0, -500))
 	
-	stage_counter_label.text = "CURRENT STAGE: " + str(stage_count)
+	stage_counter_label.text = "STAGE: " + str(stage_count)
 	score_counter_label.text = "SCORE: " + str(score_count)
 
 
@@ -129,11 +130,22 @@ func lose_game(final_position):
 	var rocket_position: Vector2i = current_gridmap.tilemap.local_to_map(current_gridmap.tilemap.to_local(rocket.global_position))
 	var end_position = final_position
 	
+	for cell in current_gridmap.tilemap.get_used_cells():
+		if current_gridmap.tilemap.get_cell_tile_data(cell) != null:
+			if current_gridmap.tilemap.get_cell_tile_data(cell).get_custom_data("asteroid") == false &&\
+			current_gridmap.tilemap.get_cell_tile_data(cell).get_custom_data("is_stopable") == false:
+				current_gridmap.astar_pathfinding.set_point_solid(cell)
+	
 	var end_path = current_gridmap.astar_pathfinding.get_id_path(rocket_position, end_position)
 	var filtered_path = []
 	
 	for cell in end_path:
-		filtered_path.append(coords_to_global_pos(current_gridmap.tilemap, cell))
+		if cell != end_path.back():
+			filtered_path.append(coords_to_global_pos(current_gridmap.tilemap, cell))
+	
+	for cell in filtered_path:
+		current_gridmap.tilemap.set_cell(current_gridmap.tilemap.local_to_map(current_gridmap.tilemap.to_local(cell)), 3, Vector2i(2,1))
+		await get_tree().create_timer(.1).timeout
 	
 	rocket.start_moving(filtered_path)
 	
@@ -193,8 +205,12 @@ func _load_next_stage(cells_to_set: Array = []):
 	var converted_path: Array = []
 	print("starting position: ", rocket_position, " ending position: ", last_cell_in_path)
 	var path = current_gridmap.astar_pathfinding.get_point_path(rocket_position, last_cell_in_path)
+	
+	
 	for cell in path:
+		current_gridmap.tilemap.set_cell(current_gridmap.tilemap.local_to_map(cell), 3, Vector2i(2,1))
 		converted_path.append(current_gridmap.tilemap.to_global(cell))
+		await get_tree().create_timer(.1).timeout
 	
 	print("path ", converted_path)
 	
@@ -254,7 +270,7 @@ func _load_next_stage(cells_to_set: Array = []):
 		print("cell set! ", cell)
 	
 	stage_count += 1
-	stage_counter_label.text = "CURRENT STAGE: " + str(stage_count)
+	stage_counter_label.text = "STAGE: " + str(stage_count)
 	
 	score_count += (map_size.x * map_size.y) - filtered_array_of_roads.size()
 	score_counter_label.text = "SCORE: " + str(score_count)
