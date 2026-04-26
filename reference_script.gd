@@ -6,6 +6,7 @@ var is_falling: bool = false
 var base_gravity: float = 10.0
 var is_set: bool = false
 var rotating: bool = false
+var moving: bool = false
 
 func _ready() -> void:
 	SignalBus.block_set.connect(_on_block_set)
@@ -57,3 +58,24 @@ func _on_block_set(current_block):
 		print("im killing myself: ", current_block)
 		Global.player_input_manager.input_ceased = false
 		queue_free()
+
+
+func move_to_right():
+	if moving:
+		return
+	moving = true
+	var right_tween = create_tween()
+	right_tween.tween_property(self, "position", Vector2(position.x + 30.0, position.y), .1)\
+	.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	await right_tween.finished
+	moving = false
+	
+func move_to_left():
+	if moving:
+		return
+	moving = true
+	var left_tween = create_tween()
+	left_tween.tween_property(self, "position", Vector2(position.x - 30.0, position.y), .1)\
+	.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	await left_tween.finished
+	moving = false

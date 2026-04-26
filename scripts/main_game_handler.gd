@@ -104,14 +104,32 @@ func _process(_delta: float) -> void:
 					#lose_game()
 				if cell not in asteroid_exeption:
 					current_gridmap.tilemap.set_cell(cell, 3, Vector2(2,0))
+					
 				var cell_to_check = current_gridmap.tilemap.local_to_map(current_gridmap.tilemap.to_local(coords_to_global_pos(current_block.tilemap, cell)))
-				if cell_to_check.y <= 0:
+				#print("original map coords: ", current_block.tilemap.get_used_cells())
+				#for xd in current_block.tilemap.get_used_cells():
+					#print("local block coords: ", current_block.tilemap.map_to_local(xd))
+				#for xpp in current_block.tilemap.get_used_cells():
+					#print("global coords: ", current_block.tilemap.to_global(current_block.tilemap.map_to_local(xpp)))
+				#for xp in current_block.tilemap.get_used_cells():
+					#print("local gridmap coords: ", current_gridmap.tilemap.to_local(current_block.tilemap.to_global(current_block.tilemap.map_to_local(xp))))
+				#for xdd in current_block.tilemap.get_used_cells():
+					#print("local gridmap coords: ", current_gridmap.tilemap.local_to_map(current_gridmap.tilemap.to_local(current_block.tilemap.to_global(current_block.tilemap.map_to_local(xdd)))))
+					#
+					
+				print(cell_to_check)
+				
+				#print("current_block interprets this as: ", current_block.tilemap.local_to_map(current_block.tilemap.to_local(coords_to_global_pos(current_gridmap.tilemap, cell_to_check))))
+				#print("current_gridmap interprets this as: ", current_block.tilemap.local_to_map(current_block.tilemap.to_local(coords_to_global_pos(current_block, cell_to_check))))
+				
+				if !cell_to_check.y > 0 :
 					end_reached = true
 					var converted_cell = all_gridmaps[2].tilemap.local_to_map(all_gridmaps[2].tilemap.to_local(current_gridmap.tilemap.to_global(current_gridmap.tilemap.map_to_local(cell))))
 					cells_above.append(converted_cell)
 					print("cell_above: ", converted_cell , " cell_to_check: ", cell_to_check, " finish_line: ", current_gridmap.finish_line)
 			if !asteroid_exeption.is_empty():
 				lose_game(asteroid_exeption.pick_random())
+				
 			
 					
 					
@@ -129,6 +147,8 @@ func _process(_delta: float) -> void:
 func lose_game(final_position):
 	var rocket_position: Vector2i = current_gridmap.tilemap.local_to_map(current_gridmap.tilemap.to_local(rocket.global_position))
 	var end_position = final_position
+	
+	Global.player_input_manager.input_ceased = true
 	
 	for cell in current_gridmap.tilemap.get_used_cells():
 		if current_gridmap.tilemap.get_cell_tile_data(cell) != null:
@@ -155,7 +175,8 @@ func lose_game(final_position):
 	await SignalBus.rocket_finished
 	
 	print("shader ", main_view_container.material.get_shader_parameter("curvature"))
-	main_view_container.dead = true
+	Global.player_input_manager.input_ceased = false
+	main_view_container.reload_game()
 	
 
 #func get_block_path():
@@ -229,7 +250,7 @@ func _load_next_stage(cells_to_set: Array = []):
 	
 	var tweens_speed: float = 2.5
 	
-	parallax_manager.speed_up_parallax()
+	#parallax_manager.speed_up_parallax()
 	
 	
 	var gridmap_0_position_tween = create_tween()

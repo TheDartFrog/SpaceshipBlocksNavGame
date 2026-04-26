@@ -25,6 +25,8 @@ var map_size: Vector2i
 var max_asteroid_cells: int = randi_range(6, 12)
 var finish_line: Array = []
 
+var max_bounds_x: Vector2
+
 func _ready():
 	for x in range(map_size.x):
 		for y in range(map_size.y):
@@ -32,7 +34,21 @@ func _ready():
 	generate_finish_line()
 	for x in range(map_size.x):
 		starting_tiles.append(Vector2i(x, map_size.y))
-	generate_starting_tiles()	
+	generate_starting_tiles()
+	
+	var max_bound_left = tilemap.to_global(tilemap.map_to_local(Vector2(map_size.x - 1, 0)))
+	var max_bound_right = tilemap.to_global(tilemap.map_to_local(Vector2(0, 0)))
+	
+	for cell in tilemap.get_used_cells():
+		if cell.y == 0:
+			print(cell)
+	
+	
+	print(map_size.x)
+	
+	
+	max_bounds_x = Vector2(max_bound_left.x, max_bound_right.x)
+	
 	#tilemap.tile_size = cell_size
 	var tilemap_cells = tilemap.get_used_cells()
 	var tilemap_cells_viable_for_asteroids: Array = []
@@ -56,8 +72,8 @@ func _ready():
 	astar_pathfinding.update()
 	
 
-func reach_the_end():
-	SignalBus.end_reached.emit()
+#func reach_the_end():
+	#SignalBus.end_reached.emit()
 
 func generate_finish_line():
 	for i in range(map_size.x):
