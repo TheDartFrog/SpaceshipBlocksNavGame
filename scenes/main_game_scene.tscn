@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bdapdcvxgfhep"]
+[gd_scene load_steps=33 format=3 uid="uid://bdapdcvxgfhep"]
 
 [ext_resource type="Script" uid="uid://d1qgjfx0rhhvj" path="res://scripts/main_game_handler.gd" id="1_qsd30"]
 [ext_resource type="Texture2D" uid="uid://dsb2ae4jssxl0" path="res://assets/parallax/background.png" id="2_4a4v8"]
@@ -20,6 +20,7 @@
 [ext_resource type="Script" uid="uid://gy8ogv3nfbhp" path="res://scenes/fast_script.gd" id="15_nbtmf"]
 [ext_resource type="PackedScene" uid="uid://bpnk0imqpvfpe" path="res://scenes/rocket_scene.tscn" id="16_4ly7o"]
 [ext_resource type="Texture2D" uid="uid://vbu12m6d5uli" path="res://assets/score_and_rounds_monitor.png" id="20_bwrmh"]
+[ext_resource type="Shader" uid="uid://c3r0hh1rv8m3r" path="res://scripts/white_noise_shader.gdshader" id="20_umghm"]
 [ext_resource type="Texture2D" uid="uid://6iefj5a01wph" path="res://assets/placeholders/logo.png" id="21_r7he4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_oa6bs"]
@@ -49,6 +50,14 @@ shader_parameter/vignette_multiplier = 2.0
 shader_parameter/ca_strength = 2.5
 shader_parameter/blur_strength = 0.5
 shader_parameter/effect_visibility = 0.50000002375
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hftxu"]
+shader = ExtResource("20_umghm")
+shader_parameter/transparency = 0.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ofj2y"]
+size = Vector2(400, 1500)
+orientation = 2
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_utd2t"]
 shader = ExtResource("2_qsd30")
@@ -176,6 +185,20 @@ visible = false
 position = Vector2(173, 69)
 scale = Vector2(0.55, 0.55)
 texture = ExtResource("21_r7he4")
+
+[node name="WhiteNoiseTest" type="MeshInstance2D" parent="CanvasLayer/MainViewContainer/SubViewport"]
+z_index = 10
+material = SubResource("ShaderMaterial_hftxu")
+mesh = SubResource("PlaneMesh_ofj2y")
+
+[node name="YOUAREDEAD" type="Label" parent="CanvasLayer/MainViewContainer/SubViewport"]
+visible = false
+z_index = 15
+offset_left = -150.0
+offset_right = 99.0
+offset_bottom = 69.0
+theme_override_font_sizes/font_size = 50
+text = "YOU DIED!"
 
 [node name="NextBlocksMonitor" type="SubViewportContainer" parent="CanvasLayer"]
 material = SubResource("ShaderMaterial_utd2t")
