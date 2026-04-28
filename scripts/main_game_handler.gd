@@ -104,43 +104,21 @@ func _process(_delta: float) -> void:
 					#lose_game()
 				if cell not in asteroid_exeption:
 					current_gridmap.tilemap.set_cell(cell, 3, Vector2(2,0))
-					
-				var cell_to_check = current_gridmap.tilemap.local_to_map(current_gridmap.tilemap.to_local(coords_to_global_pos(current_block.tilemap, cell)))
-				#print("original map coords: ", current_block.tilemap.get_used_cells())
-				#for xd in current_block.tilemap.get_used_cells():
-					#print("local block coords: ", current_block.tilemap.map_to_local(xd))
-				#for xpp in current_block.tilemap.get_used_cells():
-					#print("global coords: ", current_block.tilemap.to_global(current_block.tilemap.map_to_local(xpp)))
-				#for xp in current_block.tilemap.get_used_cells():
-					#print("local gridmap coords: ", current_gridmap.tilemap.to_local(current_block.tilemap.to_global(current_block.tilemap.map_to_local(xp))))
-				#for xdd in current_block.tilemap.get_used_cells():
-					#print("local gridmap coords: ", current_gridmap.tilemap.local_to_map(current_gridmap.tilemap.to_local(current_block.tilemap.to_global(current_block.tilemap.map_to_local(xdd)))))
-					#
-					
-				print(cell_to_check)
 				
-				#print("current_block interprets this as: ", current_block.tilemap.local_to_map(current_block.tilemap.to_local(coords_to_global_pos(current_gridmap.tilemap, cell_to_check))))
-				#print("current_gridmap interprets this as: ", current_block.tilemap.local_to_map(current_block.tilemap.to_local(coords_to_global_pos(current_block, cell_to_check))))
-				
-				if !cell_to_check.y > 0 :
-					end_reached = true
-					var converted_cell = all_gridmaps[2].tilemap.local_to_map(all_gridmaps[2].tilemap.to_local(current_gridmap.tilemap.to_global(current_gridmap.tilemap.map_to_local(cell))))
-					cells_above.append(converted_cell)
-					print("cell_above: ", converted_cell , " cell_to_check: ", cell_to_check, " finish_line: ", current_gridmap.finish_line)
 			if !asteroid_exeption.is_empty():
 				lose_game(asteroid_exeption.pick_random())
-				
-			
 					
 					
 			current_block.is_falling = false
+			for cell in current_block.tilemap.get_used_cells():
+				if current_gridmap.tilemap.local_to_map(current_gridmap.tilemap.to_local(coords_to_global_pos(current_block.tilemap, cell))).y <= 0 :
+					var global_cell_position = coords_to_global_pos(current_block.tilemap, cell)
+					var converted_cell = all_gridmaps[2].tilemap.local_to_map(all_gridmaps[2].tilemap.to_local(global_cell_position))
+					cells_above.append(converted_cell)
+			if !cells_above.is_empty():
+				end_reached = true
 			SignalBus.block_set.emit(current_block)
 			if end_reached:
-				
-				#var last_cell
-				#for cell in cells_above:
-					#if cell.y <= 0:
-						#last_cell = cell
 				_load_next_stage(cells_above)
 
 
