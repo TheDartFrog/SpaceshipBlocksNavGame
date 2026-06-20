@@ -1,25 +1,32 @@
-[gd_scene load_steps=21 format=3 uid="uid://bdapdcvxgfhep"]
+[gd_scene load_steps=33 format=3 uid="uid://bdapdcvxgfhep"]
 
 [ext_resource type="Script" uid="uid://d1qgjfx0rhhvj" path="res://scripts/main_game_handler.gd" id="1_qsd30"]
 [ext_resource type="Texture2D" uid="uid://dsb2ae4jssxl0" path="res://assets/parallax/background.png" id="2_4a4v8"]
 [ext_resource type="PackedScene" uid="uid://bdh8sl8pst1od" path="res://scenes/player_input_manager.tscn" id="2_cofsh"]
 [ext_resource type="Shader" uid="uid://s5iaftbk0r66" path="res://scripts/shaders/crt_shader.gdshader" id="2_qsd30"]
 [ext_resource type="PackedScene" uid="uid://be7nsty3ph4il" path="res://scenes/upcoming_blocks.tscn" id="2_u2xxy"]
-[ext_resource type="Shader" path="res://scenes/parallax_shader.gdshader" id="3_d383n"]
+[ext_resource type="Shader" uid="uid://b2oeot8foj3fl" path="res://scenes/parallax_shader.gdshader" id="3_d383n"]
+[ext_resource type="Script" uid="uid://d1333vugm7ncx" path="res://scripts/parallax_handler.gd" id="3_owy5r"]
 [ext_resource type="Texture2D" uid="uid://8j8tcges82qs" path="res://assets/parallax/stars_01.png" id="4_oa6bs"]
 [ext_resource type="Texture2D" uid="uid://52spdjaefy83" path="res://assets/parallax/stars_02.png" id="5_ef5fi"]
 [ext_resource type="Texture2D" uid="uid://4bmovpgs1kdx" path="res://assets/parallax/stars_03.png" id="6_i4o3e"]
 [ext_resource type="Texture2D" uid="uid://b32j1w4l7jgby" path="res://assets/parallax/gradient.png" id="7_cofsh"]
 [ext_resource type="Texture2D" uid="uid://vr45xhgeyenv" path="res://assets/parallax/glow.png" id="7_ef5fi"]
+[ext_resource type="Texture2D" uid="uid://bma8t44ugmhu8" path="res://assets/0101.png" id="9_utd2t"]
 [ext_resource type="PackedScene" uid="uid://bvcld45f8l8nw" path="res://scenes/upcoming_block_manager_scene.tscn" id="10_i4o3e"]
 [ext_resource type="Texture2D" uid="uid://dqa5swp643yja" path="res://assets/parallax/stars_ant_holyhell.png" id="10_qwe6u"]
 [ext_resource type="PackedScene" uid="uid://cwe0gyhyrlssy" path="res://scenes/music_manager.tscn" id="11_nt1we"]
 [ext_resource type="Texture2D" uid="uid://bo8iw74adihh4" path="res://assets/Wizja artystyczna nawigacja .png" id="12_jy87q"]
+[ext_resource type="Script" uid="uid://gy8ogv3nfbhp" path="res://scenes/fast_script.gd" id="15_nbtmf"]
+[ext_resource type="PackedScene" uid="uid://bpnk0imqpvfpe" path="res://scenes/rocket_scene.tscn" id="16_4ly7o"]
+[ext_resource type="Texture2D" uid="uid://vbu12m6d5uli" path="res://assets/score_and_rounds_monitor.png" id="20_bwrmh"]
+[ext_resource type="Shader" uid="uid://c3r0hh1rv8m3r" path="res://scripts/white_noise_shader.gdshader" id="20_umghm"]
+[ext_resource type="Texture2D" uid="uid://6iefj5a01wph" path="res://assets/placeholders/logo.png" id="21_r7he4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_oa6bs"]
 shader = ExtResource("3_d383n")
 shader_parameter/speed_x = 0.0
-shader_parameter/speed_y = -0.05
+shader_parameter/speed_y = -0.025
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_u2xxy"]
 shader = ExtResource("3_d383n")
@@ -44,6 +51,28 @@ shader_parameter/ca_strength = 2.5
 shader_parameter/blur_strength = 0.5
 shader_parameter/effect_visibility = 0.50000002375
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hftxu"]
+shader = ExtResource("20_umghm")
+shader_parameter/transparency = 0.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ofj2y"]
+size = Vector2(400, 1500)
+orientation = 2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_utd2t"]
+shader = ExtResource("2_qsd30")
+shader_parameter/curvature = 6.0000000894072
+shader_parameter/vignette_multiplier = 2.0
+shader_parameter/ca_strength = 2.5
+shader_parameter/blur_strength = 0.5
+shader_parameter/effect_visibility = 0.50000002375
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_utd2t"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Theme" id="Theme_utd2t"]
+Panel/styles/panel = SubResource("StyleBoxFlat_utd2t")
+
 [node name="MainScene" type="Node2D"]
 script = ExtResource("1_qsd30")
 map_size = Vector2i(9, 13)
@@ -64,6 +93,7 @@ stretch = true
 handle_input_locally = false
 size = Vector2i(1153, 649)
 render_target_update_mode = 4
+script = ExtResource("3_owy5r")
 
 [node name="BackgroundLayer" type="Sprite2D" parent="CanvasLayer/BackgroundContainer/SubViewport"]
 position = Vector2(575.4, 323)
@@ -97,6 +127,11 @@ position = Vector2(575.4, 323)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("6_i4o3e")
 
+[node name="0101" type="Sprite2D" parent="CanvasLayer/BackgroundContainer/SubViewport"]
+position = Vector2(912.99994, 221.99998)
+scale = Vector2(0.21699916, 0.21699916)
+texture = ExtResource("9_utd2t")
+
 [node name="mrowka" type="Sprite2D" parent="CanvasLayer/BackgroundContainer/SubViewport"]
 texture_repeat = 2
 material = SubResource("ShaderMaterial_nt1we")
@@ -116,10 +151,6 @@ position = Vector2(573, 397.00003)
 scale = Vector2(0.44675884, 0.44675884)
 texture = ExtResource("12_jy87q")
 
-[node name="UpcomingBlocks" parent="CanvasLayer" instance=ExtResource("2_u2xxy")]
-unique_name_in_owner = true
-position = Vector2(204, 134)
-
 [node name="MainViewContainer" type="SubViewportContainer" parent="CanvasLayer"]
 material = SubResource("ShaderMaterial_d383n")
 offset_left = 399.0
@@ -127,6 +158,7 @@ offset_top = 27.0
 offset_right = 745.0
 offset_bottom = 619.0
 stretch = true
+script = ExtResource("15_nbtmf")
 
 [node name="SubViewport" type="SubViewport" parent="CanvasLayer/MainViewContainer"]
 handle_input_locally = false
@@ -137,5 +169,77 @@ render_target_update_mode = 4
 
 [node name="Camera2D" type="Camera2D" parent="CanvasLayer/MainViewContainer/SubViewport"]
 
-[node name="RocketScene" parent="CanvasLayer/MainViewContainer/SubViewport" instance=ExtResource("13_4ly7o")]
+[node name="RocketScene" parent="CanvasLayer/MainViewContainer/SubViewport" instance=ExtResource("16_4ly7o")]
 z_index = 5
+
+[node name="Background" type="TextureRect" parent="CanvasLayer/MainViewContainer/SubViewport"]
+offset_left = -779.0
+offset_top = -384.0
+offset_right = 1269.0
+offset_bottom = 696.0
+texture = ExtResource("2_4a4v8")
+metadata/_edit_lock_ = true
+
+[node name="GameLogo" type="Sprite2D" parent="CanvasLayer/MainViewContainer/SubViewport"]
+visible = false
+position = Vector2(173, 69)
+scale = Vector2(0.55, 0.55)
+texture = ExtResource("21_r7he4")
+
+[node name="WhiteNoiseTest" type="MeshInstance2D" parent="CanvasLayer/MainViewContainer/SubViewport"]
+z_index = 10
+material = SubResource("ShaderMaterial_hftxu")
+mesh = SubResource("PlaneMesh_ofj2y")
+
+[node name="YOUAREDEAD" type="Label" parent="CanvasLayer/MainViewContainer/SubViewport"]
+visible = false
+z_index = 15
+offset_left = -150.0
+offset_right = 99.0
+offset_bottom = 69.0
+theme_override_font_sizes/font_size = 50
+text = "YOU DIED!"
+
+[node name="NextBlocksMonitor" type="SubViewportContainer" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_utd2t")
+offset_left = 196.0
+offset_top = 41.0
+offset_right = 358.0
+offset_bottom = 568.0
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/NextBlocksMonitor"]
+handle_input_locally = false
+size = Vector2i(162, 527)
+render_target_update_mode = 4
+
+[node name="Background" type="Panel" parent="CanvasLayer/NextBlocksMonitor/SubViewport"]
+offset_right = 165.0
+offset_bottom = 555.0
+theme = SubResource("Theme_utd2t")
+
+[node name="UpcomingBlocks" parent="CanvasLayer/NextBlocksMonitor/SubViewport" instance=ExtResource("2_u2xxy")]
+position = Vector2(8, 87)
+
+[node name="ScoreBackground" type="TextureRect" parent="CanvasLayer/NextBlocksMonitor/SubViewport"]
+offset_left = 16.0
+offset_top = 7.0
+offset_right = 278.0
+offset_bottom = 136.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("20_bwrmh")
+
+[node name="CurrentStage" type="Label" parent="CanvasLayer/NextBlocksMonitor/SubViewport"]
+offset_left = 34.0
+offset_top = 18.0
+offset_right = 105.0
+offset_bottom = 67.0
+text = "STAGE: 1
+"
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer/NextBlocksMonitor/SubViewport"]
+offset_left = 34.0
+offset_top = 37.0
+offset_right = 103.0
+offset_bottom = 60.0
+text = "SCORE: 0"

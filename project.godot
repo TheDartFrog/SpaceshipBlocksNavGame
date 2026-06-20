@@ -10,15 +10,20 @@ config_version=5
 
 [application]
 
-config/name="SpaceshipBlocksNavGame"
+config/name="PATH-NAV-b015"
 run/main_scene="uid://bdapdcvxgfhep"
 config/features=PackedStringArray("4.5", "GL Compatibility")
-config/icon="res://icon.svg"
+boot_splash/image="uid://dtt53xnbpd02c"
+config/icon="uid://b6tjpi4sdovfd"
 
 [autoload]
 
 Global="*res://scripts/global.gd"
 SignalBus="*res://scripts/signal_bus.gd"
+
+[display]
+
+window/stretch/mode="canvas_items"
 
 [input]
 

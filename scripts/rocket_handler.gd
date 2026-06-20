@@ -19,10 +19,13 @@ func moving():
 	if !current_path.is_empty():
 		var target_position = current_path.front() + Vector2(15.0,15.0)
 		global_position = global_position.move_toward(target_position, speed * get_process_delta_time())
+		look_at(target_position)
 		if global_position == target_position && !current_path.is_empty():
 			current_path.pop_front()
 		elif current_path.is_empty():
+			look_at(Vector2(-500, -500))
 			can_move = false
 	else:
 		can_move = false
+		look_at(Vector2(position.x, -500))
 		SignalBus.rocket_finished.emit()

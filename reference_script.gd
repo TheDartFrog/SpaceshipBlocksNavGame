@@ -3,17 +3,49 @@ extends Node2D
 @onready var tilemap = $BlockTemplateScene
 
 var is_falling: bool = false
-var base_gravity: float = 5.0
+var base_gravity: float = 10.0
 var is_set: bool = false
+var rotating: bool = false
+var moving: bool = false
 
 func _ready() -> void:
 	SignalBus.block_set.connect(_on_block_set)
 
 func rotate_right():
-	global_rotation_degrees += 90.0
+	if rotating:
+		return
+	
+	rotating = true
+	
+	var arr: Array = []
+	for cell in tilemap.get_used_cells():
+		arr.append(tilemap.to_global(tilemap.map_to_local(cell)))
+		
+	
+	#print("pre rotation: ", arr)
+	
+	var rotation_tween = create_tween()
+	rotation_tween.tween_property(self, "global_rotation_degrees", global_rotation_degrees + 90.0, .25)\
+	.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	
+	await rotation_tween.finished
+	rotating = false
+	
+	var arr0: Array = []
+	for cell in tilemap.get_used_cells():
+		arr0.append(tilemap.to_global(tilemap.map_to_local(cell)))
+		
+	#print("post rotation: ", arr0)
 
 func rotate_left():
-	global_rotation_degrees -= 90.0
+	if rotating:
+		return
+	rotating = true
+	var rotation_tween = create_tween()
+	rotation_tween.tween_property(self, "global_rotation_degrees", global_rotation_degrees - 90.0, .25)\
+	.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	await rotation_tween.finished
+	rotating = false
 
 func _process(delta: float) -> void:
 	if !is_falling:
@@ -26,3 +58,24 @@ func _on_block_set(current_block):
 		print("im killing myself: ", current_block)
 		Global.player_input_manager.input_ceased = false
 		queue_free()
+
+
+func move_to_right():
+	if moving:
+		return
+	moving = true
+	var right_tween = create_tween()
+	right_tween.tween_property(self, "position", Vector2(position.x + 30.0, position.y), .1)\
+	.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	await right_tween.finished
+	moving = false
+	
+func move_to_left():
+	if moving:
+		return
+	moving = true
+	var left_tween = create_tween()
+	left_tween.tween_property(self, "position", Vector2(position.x - 30.0, position.y), .1)\
+	.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	await left_tween.finished
+	moving = false

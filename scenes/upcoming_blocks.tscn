@@ -1,25 +1,88 @@
-[gd_scene load_steps=4 format=3 uid="uid://be7nsty3ph4il"]
+[gd_scene load_steps=6 format=3 uid="uid://be7nsty3ph4il"]
 
 [ext_resource type="Script" uid="uid://dio1s4x7vrfxc" path="res://scripts/upcoming_blocks_display_manager.gd" id="1_7wfqi"]
 [ext_resource type="PackedScene" uid="uid://c5xlcohvnilps" path="res://scenes/blockTemplateScene.tscn" id="1_wdgro"]
+[ext_resource type="Shader" uid="uid://s5iaftbk0r66" path="res://scripts/shaders/crt_shader.gdshader" id="3_664b0"]
 [ext_resource type="Texture2D" uid="uid://c3hip20v4m1gt" path="res://assets/Kolejka.png" id="4_rjhdq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rjhdq"]
+shader = ExtResource("3_664b0")
+shader_parameter/curvature = 6.0
+shader_parameter/vignette_multiplier = 2.0
+shader_parameter/ca_strength = 2.5
+shader_parameter/blur_strength = 0.5
+shader_parameter/effect_visibility = 0.2
 
 [node name="UpcomingBlocks" type="Node2D"]
 script = ExtResource("1_7wfqi")
 
-[node name="firstComingBlock" parent="." instance=ExtResource("1_wdgro")]
-position = Vector2(14, 24)
-scale = Vector2(0.75, 0.75)
-
-[node name="secondComingBlock" parent="." instance=ExtResource("1_wdgro")]
-position = Vector2(15, 165)
-scale = Vector2(0.75, 0.75)
-
-[node name="thirdComingBlock" parent="." instance=ExtResource("1_wdgro")]
-position = Vector2(15, 315)
-scale = Vector2(0.75, 0.75)
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(362.5, 258.5)
+position = Vector2(376.83752, 258.40866)
 scale = Vector2(0.6081641, 0.6081642)
 texture = ExtResource("4_rjhdq")
+
+[node name="FirstView" type="SubViewportContainer" parent="."]
+material = SubResource("ShaderMaterial_rjhdq")
+offset_left = 11.0
+offset_top = 10.182678
+offset_right = 137.0
+offset_bottom = 128.0
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="FirstView"]
+handle_input_locally = false
+size = Vector2i(126, 117)
+render_target_update_mode = 4
+
+[node name="firstComingBlock" parent="FirstView/SubViewport" instance=ExtResource("1_wdgro")]
+position = Vector2(17, 12.091339)
+scale = Vector2(0.75, 0.75)
+
+[node name="Sprite2D" type="Sprite2D" parent="FirstView/SubViewport"]
+position = Vector2(365.83752, 249.40866)
+scale = Vector2(0.6081641, 0.6081642)
+texture = ExtResource("4_rjhdq")
+
+[node name="SecondView" type="SubViewportContainer" parent="."]
+material = SubResource("ShaderMaterial_rjhdq")
+offset_left = 11.0
+offset_top = 153.0
+offset_right = 137.0
+offset_bottom = 270.81732
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SecondView"]
+handle_input_locally = false
+size = Vector2i(126, 117)
+render_target_update_mode = 4
+
+[node name="secondComingBlock" parent="SecondView/SubViewport" instance=ExtResource("1_wdgro")]
+position = Vector2(15, 11.817322)
+scale = Vector2(0.75, 0.75)
+
+[node name="Sprite2D" type="Sprite2D" parent="SecondView/SubViewport"]
+position = Vector2(365.83752, 249.40866)
+scale = Vector2(0.6081641, 0.6081642)
+texture = ExtResource("4_rjhdq")
+
+[node name="ThirdView" type="SubViewportContainer" parent="."]
+material = SubResource("ShaderMaterial_rjhdq")
+offset_left = 11.0
+offset_top = 301.0
+offset_right = 137.0
+offset_bottom = 418.81732
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="ThirdView"]
+handle_input_locally = false
+size = Vector2i(126, 117)
+render_target_update_mode = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="ThirdView/SubViewport"]
+position = Vector2(365.83752, 249.40866)
+scale = Vector2(0.6081641, 0.6081642)
+texture = ExtResource("4_rjhdq")
+
+[node name="thirdComingBlock" parent="ThirdView/SubViewport" instance=ExtResource("1_wdgro")]
+position = Vector2(16, 16)
+scale = Vector2(0.75, 0.75)
